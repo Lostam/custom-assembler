@@ -1,0 +1,585 @@
+____________________________ 
+Running file: inputs/100_numbers.text  
+File Input : 
+0 1 2 3 4 5 6 7 8 9 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18 19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31 31 32 32 33 33 34 34 35 35 36 36 37 37 38 38 39 39 40 40 41 41 42 42 43 43 44 44 45 45 46 46 47 47 48 48 49 49 50 50 51 51 52 52 53 53 54 54 55 55 56 56 57 57 58 58 59 59 60 60 61 61 62 62 63 63 64 64 65 65 66 66 67 67 68 68 69 69 70 70 71 71 72 72 73 73 74 74 75 75 76 76 77 77 78 78 79 79 80 80 81 81 82 82 83 83 84 84 85 85 86 86 87 87 88 88 89 89 90 90 91 91 92 92 93 93 94 94 95 95 96 96 97 97 98 98 99 99 100 100 101
+
+Please start entering your integer inputs,
+trigger EOF anytime to print the results
+
+Adding 0 to set
+Adding 1 to set
+Adding 2 to set
+Adding 3 to set
+Adding 4 to set
+Adding 5 to set
+Adding 6 to set
+Adding 7 to set
+Adding 8 to set
+Resized array by 10 to 20
+Adding 9 to set
+Adding 10 to set
+Adding 11 to set
+11 is already in set,will not add it
+Adding 12 to set
+12 is already in set,will not add it
+Adding 13 to set
+13 is already in set,will not add it
+Adding 14 to set
+14 is already in set,will not add it
+Adding 15 to set
+15 is already in set,will not add it
+Adding 16 to set
+16 is already in set,will not add it
+Adding 17 to set
+17 is already in set,will not add it
+Adding 18 to set
+18 is already in set,will not add it
+Resized array by 10 to 30
+Adding 19 to set
+19 is already in set,will not add it
+Adding 20 to set
+20 is already in set,will not add it
+Adding 21 to set
+21 is already in set,will not add it
+Adding 22 to set
+22 is already in set,will not add it
+Adding 23 to set
+23 is already in set,will not add it
+Adding 24 to set
+24 is already in set,will not add it
+Adding 25 to set
+25 is already in set,will not add it
+Adding 26 to set
+26 is already in set,will not add it
+Adding 27 to set
+27 is already in set,will not add it
+Adding 28 to set
+28 is already in set,will not add it
+Resized array by 10 to 40
+Adding 29 to set
+29 is already in set,will not add it
+Adding 30 to set
+30 is already in set,will not add it
+Adding 31 to set
+31 is already in set,will not add it
+Adding 32 to set
+32 is already in set,will not add it
+Adding 33 to set
+33 is already in set,will not add it
+Adding 34 to set
+34 is already in set,will not add it
+Adding 35 to set
+35 is already in set,will not add it
+Adding 36 to set
+36 is already in set,will not add it
+Adding 37 to set
+37 is already in set,will not add it
+Adding 38 to set
+38 is already in set,will not add it
+Resized array by 10 to 50
+Adding 39 to set
+39 is already in set,will not add it
+Adding 40 to set
+40 is already in set,will not add it
+Adding 41 to set
+41 is already in set,will not add it
+Adding 42 to set
+42 is already in set,will not add it
+Adding 43 to set
+43 is already in set,will not add it
+Adding 44 to set
+44 is already in set,will not add it
+Adding 45 to set
+45 is already in set,will not add it
+Adding 46 to set
+46 is already in set,will not add it
+Adding 47 to set
+47 is already in set,will not add it
+Adding 48 to set
+48 is already in set,will not add it
+Resized array by 10 to 60
+Adding 49 to set
+49 is already in set,will not add it
+Adding 50 to set
+50 is already in set,will not add it
+Adding 51 to set
+51 is already in set,will not add it
+Adding 52 to set
+52 is already in set,will not add it
+Adding 53 to set
+53 is already in set,will not add it
+Adding 54 to set
+54 is already in set,will not add it
+Adding 55 to set
+55 is already in set,will not add it
+Adding 56 to set
+56 is already in set,will not add it
+Adding 57 to set
+57 is already in set,will not add it
+Adding 58 to set
+58 is already in set,will not add it
+Resized array by 10 to 70
+Adding 59 to set
+59 is already in set,will not add it
+Adding 60 to set
+60 is already in set,will not add it
+Adding 61 to set
+61 is already in set,will not add it
+Adding 62 to set
+62 is already in set,will not add it
+Adding 63 to set
+63 is already in set,will not add it
+Adding 64 to set
+64 is already in set,will not add it
+Adding 65 to set
+65 is already in set,will not add it
+Adding 66 to set
+66 is already in set,will not add it
+Adding 67 to set
+67 is already in set,will not add it
+Adding 68 to set
+68 is already in set,will not add it
+Resized array by 10 to 80
+Adding 69 to set
+69 is already in set,will not add it
+Adding 70 to set
+70 is already in set,will not add it
+Adding 71 to set
+71 is already in set,will not add it
+Adding 72 to set
+72 is already in set,will not add it
+Adding 73 to set
+73 is already in set,will not add it
+Adding 74 to set
+74 is already in set,will not add it
+Adding 75 to set
+75 is already in set,will not add it
+Adding 76 to set
+76 is already in set,will not add it
+Adding 77 to set
+77 is already in set,will not add it
+Adding 78 to set
+78 is already in set,will not add it
+Resized array by 10 to 90
+Adding 79 to set
+79 is already in set,will not add it
+Adding 80 to set
+80 is already in set,will not add it
+Adding 81 to set
+81 is already in set,will not add it
+Adding 82 to set
+82 is already in set,will not add it
+Adding 83 to set
+83 is already in set,will not add it
+Adding 84 to set
+84 is already in set,will not add it
+Adding 85 to set
+85 is already in set,will not add it
+Adding 86 to set
+86 is already in set,will not add it
+Adding 87 to set
+87 is already in set,will not add it
+Adding 88 to set
+88 is already in set,will not add it
+Resized array by 10 to 100
+Adding 89 to set
+89 is already in set,will not add it
+Adding 90 to set
+90 is already in set,will not add it
+Adding 91 to set
+91 is already in set,will not add it
+Adding 92 to set
+92 is already in set,will not add it
+Adding 93 to set
+93 is already in set,will not add it
+Adding 94 to set
+94 is already in set,will not add it
+Adding 95 to set
+95 is already in set,will not add it
+Adding 96 to set
+96 is already in set,will not add it
+Adding 97 to set
+97 is already in set,will not add it
+Adding 98 to set
+98 is already in set,will not add it
+Resized array by 10 to 110
+Adding 99 to set
+99 is already in set,will not add it
+Adding 100 to set
+100 is already in set,will not add it
+Adding 101 to set
+EOF detected
+_________________________________
+Printing provided set : 
+Item in place 0 is : 0
+Item in place 1 is : 1
+Item in place 2 is : 2
+Item in place 3 is : 3
+Item in place 4 is : 4
+Item in place 5 is : 5
+Item in place 6 is : 6
+Item in place 7 is : 7
+Item in place 8 is : 8
+Item in place 9 is : 9
+Item in place 10 is : 10
+Item in place 11 is : 11
+Item in place 12 is : 12
+Item in place 13 is : 13
+Item in place 14 is : 14
+Item in place 15 is : 15
+Item in place 16 is : 16
+Item in place 17 is : 17
+Item in place 18 is : 18
+Item in place 19 is : 19
+Item in place 20 is : 20
+Item in place 21 is : 21
+Item in place 22 is : 22
+Item in place 23 is : 23
+Item in place 24 is : 24
+Item in place 25 is : 25
+Item in place 26 is : 26
+Item in place 27 is : 27
+Item in place 28 is : 28
+Item in place 29 is : 29
+Item in place 30 is : 30
+Item in place 31 is : 31
+Item in place 32 is : 32
+Item in place 33 is : 33
+Item in place 34 is : 34
+Item in place 35 is : 35
+Item in place 36 is : 36
+Item in place 37 is : 37
+Item in place 38 is : 38
+Item in place 39 is : 39
+Item in place 40 is : 40
+Item in place 41 is : 41
+Item in place 42 is : 42
+Item in place 43 is : 43
+Item in place 44 is : 44
+Item in place 45 is : 45
+Item in place 46 is : 46
+Item in place 47 is : 47
+Item in place 48 is : 48
+Item in place 49 is : 49
+Item in place 50 is : 50
+Item in place 51 is : 51
+Item in place 52 is : 52
+Item in place 53 is : 53
+Item in place 54 is : 54
+Item in place 55 is : 55
+Item in place 56 is : 56
+Item in place 57 is : 57
+Item in place 58 is : 58
+Item in place 59 is : 59
+Item in place 60 is : 60
+Item in place 61 is : 61
+Item in place 62 is : 62
+Item in place 63 is : 63
+Item in place 64 is : 64
+Item in place 65 is : 65
+Item in place 66 is : 66
+Item in place 67 is : 67
+Item in place 68 is : 68
+Item in place 69 is : 69
+Item in place 70 is : 70
+Item in place 71 is : 71
+Item in place 72 is : 72
+Item in place 73 is : 73
+Item in place 74 is : 74
+Item in place 75 is : 75
+Item in place 76 is : 76
+Item in place 77 is : 77
+Item in place 78 is : 78
+Item in place 79 is : 79
+Item in place 80 is : 80
+Item in place 81 is : 81
+Item in place 82 is : 82
+Item in place 83 is : 83
+Item in place 84 is : 84
+Item in place 85 is : 85
+Item in place 86 is : 86
+Item in place 87 is : 87
+Item in place 88 is : 88
+Item in place 89 is : 89
+Item in place 90 is : 90
+Item in place 91 is : 91
+Item in place 92 is : 92
+Item in place 93 is : 93
+Item in place 94 is : 94
+Item in place 95 is : 95
+Item in place 96 is : 96
+Item in place 97 is : 97
+Item in place 98 is : 98
+Item in place 99 is : 99
+Item in place 100 is : 100
+Item in place 101 is : 101
+Finished printing the provided set!
+____________________________ 
+Running file: inputs/basic.text  
+File Input : 
+1 2 3 4 5 6 7 8 9 0 11 12 13 14 15 16 16 1 2 3 4 5 6 7 8 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39
+
+Please start entering your integer inputs,
+trigger EOF anytime to print the results
+
+Adding 1 to set
+Adding 2 to set
+Adding 3 to set
+Adding 4 to set
+Adding 5 to set
+Adding 6 to set
+Adding 7 to set
+Adding 8 to set
+Adding 9 to set
+Resized array by 10 to 20
+Adding 0 to set
+Adding 11 to set
+Adding 12 to set
+Adding 13 to set
+Adding 14 to set
+Adding 15 to set
+Adding 16 to set
+16 is already in set,will not add it
+1 is already in set,will not add it
+2 is already in set,will not add it
+3 is already in set,will not add it
+4 is already in set,will not add it
+5 is already in set,will not add it
+6 is already in set,will not add it
+7 is already in set,will not add it
+8 is already in set,will not add it
+Adding 17 to set
+Adding 18 to set
+Adding 19 to set
+Resized array by 10 to 30
+Adding 20 to set
+Adding 21 to set
+Adding 22 to set
+Adding 23 to set
+Adding 24 to set
+Adding 25 to set
+Adding 26 to set
+Adding 27 to set
+Adding 28 to set
+Adding 29 to set
+Resized array by 10 to 40
+Adding 30 to set
+Adding 31 to set
+Adding 32 to set
+Adding 33 to set
+Adding 34 to set
+Adding 35 to set
+Adding 36 to set
+Adding 37 to set
+Adding 38 to set
+Adding 39 to set
+EOF detected
+_________________________________
+Printing provided set : 
+Item in place 0 is : 1
+Item in place 1 is : 2
+Item in place 2 is : 3
+Item in place 3 is : 4
+Item in place 4 is : 5
+Item in place 5 is : 6
+Item in place 6 is : 7
+Item in place 7 is : 8
+Item in place 8 is : 9
+Item in place 9 is : 0
+Item in place 10 is : 11
+Item in place 11 is : 12
+Item in place 12 is : 13
+Item in place 13 is : 14
+Item in place 14 is : 15
+Item in place 15 is : 16
+Item in place 16 is : 17
+Item in place 17 is : 18
+Item in place 18 is : 19
+Item in place 19 is : 20
+Item in place 20 is : 21
+Item in place 21 is : 22
+Item in place 22 is : 23
+Item in place 23 is : 24
+Item in place 24 is : 25
+Item in place 25 is : 26
+Item in place 26 is : 27
+Item in place 27 is : 28
+Item in place 28 is : 29
+Item in place 29 is : 30
+Item in place 30 is : 31
+Item in place 31 is : 32
+Item in place 32 is : 33
+Item in place 33 is : 34
+Item in place 34 is : 35
+Item in place 35 is : 36
+Item in place 36 is : 37
+Item in place 37 is : 38
+Item in place 38 is : 39
+Finished printing the provided set!
+____________________________ 
+Running file: inputs/empty.text  
+File Input : 
+
+
+Please start entering your integer inputs,
+trigger EOF anytime to print the results
+
+EOF detected
+_________________________________
+Printing provided set : 
+Finished printing the provided set!
+____________________________ 
+Running file: inputs/multiple_lines.text  
+File Input : 
+1
+2 1
+3 2 1
+4 3 2 1
+4 3 2 1
+3 2 1
+2 1
+1
+
+Please start entering your integer inputs,
+trigger EOF anytime to print the results
+
+Adding 1 to set
+Adding 2 to set
+1 is already in set,will not add it
+Adding 3 to set
+2 is already in set,will not add it
+1 is already in set,will not add it
+Adding 4 to set
+3 is already in set,will not add it
+2 is already in set,will not add it
+1 is already in set,will not add it
+4 is already in set,will not add it
+3 is already in set,will not add it
+2 is already in set,will not add it
+1 is already in set,will not add it
+3 is already in set,will not add it
+2 is already in set,will not add it
+1 is already in set,will not add it
+2 is already in set,will not add it
+1 is already in set,will not add it
+1 is already in set,will not add it
+EOF detected
+_________________________________
+Printing provided set : 
+Item in place 0 is : 1
+Item in place 1 is : 2
+Item in place 2 is : 3
+Item in place 3 is : 4
+Finished printing the provided set!
+____________________________ 
+Running file: inputs/negatives.text  
+File Input : 
+-1 -2 -3 -4 -2 -4 -7 -4 -6 -5 -5 1 -2 -4 -5
+
+Please start entering your integer inputs,
+trigger EOF anytime to print the results
+
+Adding -1 to set
+Adding -2 to set
+Adding -3 to set
+Adding -4 to set
+-2 is already in set,will not add it
+-4 is already in set,will not add it
+Adding -7 to set
+-4 is already in set,will not add it
+Adding -6 to set
+Adding -5 to set
+-5 is already in set,will not add it
+Adding 1 to set
+-2 is already in set,will not add it
+-4 is already in set,will not add it
+-5 is already in set,will not add it
+EOF detected
+_________________________________
+Printing provided set : 
+Item in place 0 is : -1
+Item in place 1 is : -2
+Item in place 2 is : -3
+Item in place 3 is : -4
+Item in place 4 is : -7
+Item in place 5 is : -6
+Item in place 6 is : -5
+Item in place 7 is : 1
+Finished printing the provided set!
+____________________________ 
+Running file: inputs/ones.text  
+File Input : 
+1 1 1
+
+Please start entering your integer inputs,
+trigger EOF anytime to print the results
+
+Adding 1 to set
+1 is already in set,will not add it
+1 is already in set,will not add it
+EOF detected
+_________________________________
+Printing provided set : 
+Item in place 0 is : 1
+Finished printing the provided set!
+____________________________ 
+Running file: inputs/similar.text  
+File Input : 
+1 11 111 1111 11111 1111 111 11 1
+
+Please start entering your integer inputs,
+trigger EOF anytime to print the results
+
+Adding 1 to set
+Adding 11 to set
+Adding 111 to set
+Adding 1111 to set
+Adding 11111 to set
+1111 is already in set,will not add it
+111 is already in set,will not add it
+11 is already in set,will not add it
+1 is already in set,will not add it
+EOF detected
+_________________________________
+Printing provided set : 
+Item in place 0 is : 1
+Item in place 1 is : 11
+Item in place 2 is : 111
+Item in place 3 is : 1111
+Item in place 4 is : 11111
+Finished printing the provided set!
+____________________________ 
+Running file: inputs/similar_negatives.text  
+File Input : 
+-1 -11 11 1
+
+Please start entering your integer inputs,
+trigger EOF anytime to print the results
+
+Adding -1 to set
+Adding -11 to set
+Adding 11 to set
+Adding 1 to set
+EOF detected
+_________________________________
+Printing provided set : 
+Item in place 0 is : -1
+Item in place 1 is : -11
+Item in place 2 is : 11
+Item in place 3 is : 1
+Finished printing the provided set!
+____________________________ 
+Running file: inputs/zeros.text  
+File Input : 
+0 0
+
+Please start entering your integer inputs,
+trigger EOF anytime to print the results
+
+Adding 0 to set
+0 is already in set,will not add it
+EOF detected
+_________________________________
+Printing provided set : 
+Item in place 0 is : 0
+Finished printing the provided set!

@@ -1,0 +1,21 @@
+some_comp G
+read_comp   A,
+read_comp A 123
+read_comp A, A
+read_comp A, 123
+read_comp A, 123 A
+read_comp A, 123, A
+read_comp A, 123, 123 SSS
+sub_comp F, , D
+mult_comp_comp F D
+mult_comp_comp A, Z
+mult_comp_real, A, 2.5
+mult_comp_img A, B
+abs_comp
+abs_comp 2.5
+print_comp C, D
+read_comp afasdfasdfa
+read_comp G
+read_comp, A
+stop AA
+stop

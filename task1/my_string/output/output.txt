@@ -1,0 +1,310 @@
+____________________________ 
+Running file: inputs/input1.text  
+File Input : 
+1 abcde abcdd
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strcmp
+
+Please provide the first string, max length is 80 chars
+First string is abcde
+Please provide the second string, max length is 80 chars
+Second string is abcdd
+Will compare "abcde" to "abcdd"
+
+Result from original strcmp method : 1
+Result from my_strcmp method : 1
+____________________________ 
+Running file: inputs/input10.text  
+File Input : 
+2 abcdz abcde 100
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strncmp
+
+Please provide the first string, max length is 80 chars
+First string is abcdz
+Please provide the second string, max length is 80 chars
+Second string is abcde
+Please provide the number of chars to compare
+Will compare "abcdz" to "abcde" up to the 100 char
+
+Result from original strncmp method : 21
+Result from my_strncmp method : 21
+____________________________ 
+Running file: inputs/input11.text  
+File Input : 
+3 abcde a
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strchr
+
+Please provide the a string, max length is 80 chars
+The chosen string is "abcde"
+Please provide a char to find in abcde string
+Letter provided is "a"
+Will return the position of "a" in "abcde" if found, will return -1 otherwise
+
+Result from original strchr method : abcde
+Result from my_strchr method : 0
+____________________________ 
+Running file: inputs/input12.text  
+File Input : 
+3 abcde z
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strchr
+
+Please provide the a string, max length is 80 chars
+The chosen string is "abcde"
+Please provide a char to find in abcde string
+Letter provided is "z"
+Will return the position of "z" in "abcde" if found, will return -1 otherwise
+
+Result from original strchr method : (null)
+Result from my_strchr method : -1
+____________________________ 
+Running file: inputs/input13.text  
+File Input : 
+3 abcde _
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strchr
+
+Please provide the a string, max length is 80 chars
+The chosen string is "abcde"
+Please provide a char to find in abcde string
+Letter provided is "_"
+Will return the position of "_" in "abcde" if found, will return -1 otherwise
+
+Result from original strchr method : (null)
+Result from my_strchr method : -1
+____________________________ 
+Running file: inputs/input14.text  
+File Input : 
+3 a a
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strchr
+
+Please provide the a string, max length is 80 chars
+The chosen string is "a"
+Please provide a char to find in a string
+Letter provided is "a"
+Will return the position of "a" in "a" if found, will return -1 otherwise
+
+Result from original strchr method : a
+Result from my_strchr method : 0
+____________________________ 
+Running file: inputs/input15.text  
+File Input : 
+3 1234 a
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strchr
+
+Please provide the a string, max length is 80 chars
+The chosen string is "1234"
+Please provide a char to find in 1234 string
+Letter provided is "a"
+Will return the position of "a" in "1234" if found, will return -1 otherwise
+
+Result from original strchr method : (null)
+Result from my_strchr method : -1
+____________________________ 
+Running file: inputs/input16.text  
+File Input : 
+3 abcd 1
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strchr
+
+Please provide the a string, max length is 80 chars
+The chosen string is "abcd"
+Please provide a char to find in abcd string
+Letter provided is "1"
+Will return the position of "1" in "abcd" if found, will return -1 otherwise
+
+Result from original strchr method : (null)
+Result from my_strchr method : -1
+____________________________ 
+Running file: inputs/input2.text  
+File Input : 
+1 abcde abcde
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strcmp
+
+Please provide the first string, max length is 80 chars
+First string is abcde
+Please provide the second string, max length is 80 chars
+Second string is abcde
+Will compare "abcde" to "abcde"
+
+Result from original strcmp method : 0
+Result from my_strcmp method : 0
+____________________________ 
+Running file: inputs/input3.text  
+File Input : 
+1 abcd abcde
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strcmp
+
+Please provide the first string, max length is 80 chars
+First string is abcd
+Please provide the second string, max length is 80 chars
+Second string is abcde
+Will compare "abcd" to "abcde"
+
+Result from original strcmp method : -101
+Result from my_strcmp method : -101
+____________________________ 
+Running file: inputs/input4.text  
+File Input : 
+1 abcde abcd
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strcmp
+
+Please provide the first string, max length is 80 chars
+First string is abcde
+Please provide the second string, max length is 80 chars
+Second string is abcd
+Will compare "abcde" to "abcd"
+
+Result from original strcmp method : 101
+Result from my_strcmp method : 101
+____________________________ 
+Running file: inputs/input5.text  
+File Input : 
+2 abcde abcdd 4
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strncmp
+
+Please provide the first string, max length is 80 chars
+First string is abcde
+Please provide the second string, max length is 80 chars
+Second string is abcdd
+Please provide the number of chars to compare
+Will compare "abcde" to "abcdd" up to the 4 char
+
+Result from original strncmp method : 0
+Result from my_strncmp method : 0
+____________________________ 
+Running file: inputs/input6.text  
+File Input : 
+2 abcde abcde 4
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strncmp
+
+Please provide the first string, max length is 80 chars
+First string is abcde
+Please provide the second string, max length is 80 chars
+Second string is abcde
+Please provide the number of chars to compare
+Will compare "abcde" to "abcde" up to the 4 char
+
+Result from original strncmp method : 0
+Result from my_strncmp method : 0
+____________________________ 
+Running file: inputs/input7.text  
+File Input : 
+2 abcd abcde 5
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strncmp
+
+Please provide the first string, max length is 80 chars
+First string is abcd
+Please provide the second string, max length is 80 chars
+Second string is abcde
+Please provide the number of chars to compare
+Will compare "abcd" to "abcde" up to the 5 char
+
+Result from original strncmp method : -101
+Result from my_strncmp method : -101
+____________________________ 
+Running file: inputs/input8.text  
+File Input : 
+2 abcde abcd 5
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strncmp
+
+Please provide the first string, max length is 80 chars
+First string is abcde
+Please provide the second string, max length is 80 chars
+Second string is abcd
+Please provide the number of chars to compare
+Will compare "abcde" to "abcd" up to the 5 char
+
+Result from original strncmp method : 101
+Result from my_strncmp method : 101
+____________________________ 
+Running file: inputs/input9.text  
+File Input : 
+2 abcde abcdz 100
+
+Please choose a method to run: 
+1: my_strcmp
+2: my_strncmp
+3: my_strchr
+You chose to run my_strncmp
+
+Please provide the first string, max length is 80 chars
+First string is abcde
+Please provide the second string, max length is 80 chars
+Second string is abcdz
+Please provide the number of chars to compare
+Will compare "abcde" to "abcdz" up to the 100 char
+
+Result from original strncmp method : -21
+Result from my_strncmp method : -21

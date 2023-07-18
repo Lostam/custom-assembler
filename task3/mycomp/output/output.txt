@@ -1,0 +1,336 @@
+____________________________ 
+Running file: inputs/bad_input.txt  
+File Input : 
+some_comp G
+read_comp   A,
+read_comp A 123
+read_comp A, A
+read_comp A, 123
+read_comp A, 123 A
+read_comp A, 123, A
+read_comp A, 123, 123 SSS
+sub_comp F, , D
+mult_comp_comp F D
+mult_comp_comp A, Z
+mult_comp_real, A, 2.5
+mult_comp_img A, B
+abs_comp
+abs_comp 2.5
+print_comp C, D
+read_comp afasdfasdfa
+read_comp G
+read_comp, A
+stop AA
+stop
+
+Please start entering your command,
+ enter 'stop' anytime to exit
+
+---------------------------------
+
+Ready for new complex command
+
+Command received : some_comp G
+Invalid format: Undefined command name
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp   A,
+Invalid format: Expected 5 parameters and received 2.
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp A 123
+Invalid format: Expected 5 parameters and received 2.
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp A, A
+Found A
+Invalid format in parameter 2: Wrong input, numeric expected.
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp A, 123
+Invalid format: Expected 5 parameters and received 3.
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp A, 123 A
+Invalid format: Expected 5 parameters and received 4.
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp A, 123, A
+Found A
+Invalid format in parameter 3: Wrong input, numeric expected.
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp A, 123, 123 SSS
+Invalid format: Extraneous text after end of command.
+---------------------------------
+
+Ready for new complex command
+
+Command received : sub_comp F, , D
+Invalid format: Expected 3 parameters and received 2.
+---------------------------------
+
+Ready for new complex command
+
+Command received : mult_comp_comp F D
+Invalid format: Expected 3 parameters and received 2.
+---------------------------------
+
+Ready for new complex command
+
+Command received : mult_comp_comp A, Z
+Invalid format in parameter 2: Undefined complex variable.
+---------------------------------
+
+Ready for new complex command
+
+Command received : mult_comp_real, A, 2.5
+Invalid format in command name: There should be no characters other than space after command name.
+---------------------------------
+
+Ready for new complex command
+
+Command received : mult_comp_img A, B
+Found B
+Invalid format in parameter 2: Wrong input, numeric expected.
+---------------------------------
+
+Ready for new complex command
+
+Command received : abs_comp
+Invalid format: Missing parameter.
+---------------------------------
+
+Ready for new complex command
+
+Command received : abs_comp 2.5
+Invalid format in parameter 1: Wrong input length, expected a single letter from A-F.
+---------------------------------
+
+Ready for new complex command
+
+Command received : print_comp C, D
+Invalid format: Extraneous text after end of command.
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp afasdfasdfa
+Invalid format in parameter 1: Wrong input length, expected a single letter from A-F.
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp G
+Invalid format in parameter 1: Undefined complex variable.
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp, A
+Invalid format in command name: There should be no characters other than space after command name.
+---------------------------------
+
+Ready for new complex command
+
+Command received : stop AA
+Invalid format: Extraneous text after end of command.
+---------------------------------
+
+Ready for new complex command
+
+Command received : stop
+Detected stop command, aborting program
+____________________________ 
+Running file: inputs/eof_input.txt  
+File Input : 
+read_comp A,    45.1,     -23.75
+
+Please start entering your command,
+ enter 'stop' anytime to exit
+
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp A,    45.1,     -23.75
+45.10 - 23.75i
+---------------------------------
+
+Ready for new complex command
+
+WARNING : EOF detected, the program should only be terminated with the stop command____________________________ 
+Running file: inputs/input.txt  
+File Input : 
+read_comp A,    45.1,     -23.75
+print_comp A
+print_comp B
+print_comp C
+print_comp A
+read_comp B, 54.2, 3.56
+print_comp B
+read_comp C, 0, -1
+print_comp C
+add_comp A, B
+sub_comp C, A
+sub_comp B, B
+sub_comp D, A
+mult_comp_real A, 2.51
+mult_comp_img A   ,-2.564
+mult_comp_comp        A      ,      B
+mult_comp_comp E    , C
+abs_comp A
+abs_comp B
+abs_comp       C
+abs_comp F
+stop
+
+Please start entering your command,
+ enter 'stop' anytime to exit
+
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp A,    45.1,     -23.75
+45.10 - 23.75i
+---------------------------------
+
+Ready for new complex command
+
+Command received : print_comp A
+A is: 45.10 - 23.75i
+---------------------------------
+
+Ready for new complex command
+
+Command received : print_comp B
+B is: 0.00
+---------------------------------
+
+Ready for new complex command
+
+Command received : print_comp C
+C is: 0.00
+---------------------------------
+
+Ready for new complex command
+
+Command received : print_comp A
+A is: 45.10 - 23.75i
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp B, 54.2, 3.56
+54.20 + 3.56i
+---------------------------------
+
+Ready for new complex command
+
+Command received : print_comp B
+B is: 54.20 + 3.56i
+---------------------------------
+
+Ready for new complex command
+
+Command received : read_comp C, 0, -1
+-1.00i
+---------------------------------
+
+Ready for new complex command
+
+Command received : print_comp C
+C is: -1.00i
+---------------------------------
+
+Ready for new complex command
+
+Command received : add_comp A, B
+add result is : 99.30 - 20.19i
+---------------------------------
+
+Ready for new complex command
+
+Command received : sub_comp C, A
+subtract result is : -45.10 + 22.75i
+---------------------------------
+
+Ready for new complex command
+
+Command received : sub_comp B, B
+subtract result is : 0
+---------------------------------
+
+Ready for new complex command
+
+Command received : sub_comp D, A
+subtract result is : -45.10 + 23.75i
+---------------------------------
+
+Ready for new complex command
+
+Command received : mult_comp_real A, 2.51
+multiply result is : 90.20 - 47.50i
+---------------------------------
+
+Ready for new complex command
+
+Command received : mult_comp_img A   ,-2.564
+Invalid format: Expected 3 parameters and received 2.
+---------------------------------
+
+Ready for new complex command
+
+Command received : mult_comp_comp        A      ,      B
+multiply result is : 2528.97 - 1126.69i
+---------------------------------
+
+Ready for new complex command
+
+Command received : mult_comp_comp E    , C
+multiply result is : -0.00i
+---------------------------------
+
+Ready for new complex command
+
+Command received : abs_comp A
+abs is 50.971291
+---------------------------------
+
+Ready for new complex command
+
+Command received : abs_comp B
+abs is 54.316789
+---------------------------------
+
+Ready for new complex command
+
+Command received : abs_comp       C
+abs is 1.000000
+---------------------------------
+
+Ready for new complex command
+
+Command received : abs_comp F
+abs is 0.000000
+---------------------------------
+
+Ready for new complex command
+
+Command received : stop
+Detected stop command, aborting program

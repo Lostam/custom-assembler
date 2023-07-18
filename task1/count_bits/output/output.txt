@@ -1,0 +1,91 @@
+____________________________ 
+Running file: inputs/input1.text  
+File Input : 
+10
+
+Please provide your number
+Number provided is : 10
+Number in bit format is : 00000000000000000000000000001010
+Number of bits in even places is : 0
+____________________________ 
+Running file: inputs/input10.text  
+File Input : 
+5
+
+Please provide your number
+Number provided is : 5
+Number in bit format is : 00000000000000000000000000000101
+Number of bits in even places is : 2
+____________________________ 
+Running file: inputs/input2.text  
+File Input : 
+148
+
+Please provide your number
+Number provided is : 148
+Number in bit format is : 00000000000000000000000010010100
+Number of bits in even places is : 2
+____________________________ 
+Running file: inputs/input3.text  
+File Input : 
+0
+
+Please provide your number
+Number provided is : 0
+Number in bit format is : 00000000000000000000000000000000
+Number of bits in even places is : 0
+____________________________ 
+Running file: inputs/input4.text  
+File Input : 
+21387592183754928133749812374981273498127349851273985127349851734895y134985713498751349875139847591384751938475619387569138476591837465983479613
+
+Please provide your number
+Number provided is : 18446744073709551615
+Number in bit format is : 01111111111111111111111111111111
+Number of bits in even places is : 32
+____________________________ 
+Running file: inputs/input5.text  
+File Input : 
+A
+
+Please provide your number
+Number provided is : 4552453520
+Number in bit format is : 00001111010110001110110110010000
+Number of bits in even places is : 9
+____________________________ 
+Running file: inputs/input6.text  
+File Input : 
+87381
+00000110000001000011110110010000
+
+Please provide your number
+Number provided is : 87381
+Number in bit format is : 00000000000000010101010101010101
+Number of bits in even places is : 9
+____________________________ 
+Running file: inputs/input7.text  
+File Input : 
+-1
+
+Please provide your number
+Number provided is : 18446744073709551615
+Number in bit format is : 01111111111111111111111111111111
+Number of bits in even places is : 32
+____________________________ 
+Running file: inputs/input8.text  
+File Input : 
+357913941
+
+Please provide your number
+Number provided is : 357913941
+Number in bit format is : 00010101010101010101010101010101
+Number of bits in even places is : 15
+____________________________ 
+Running file: inputs/input9.text  
+File Input : 
+2342342342341314
+
+Please provide your number
+Number provided is : 2342342342341314
+Number in bit format is : 00010011010000011111001011000010
+Number of bits in even places is : 12
