@@ -26,7 +26,7 @@ typedef struct
     const char *operation_string;
     OperationType operation;
     AddressOp *source; // maybe use unsigned char instead
-    AddressOp *destintion;
+    AddressOp *destination;
 } Instruction;
 
 void validate_instruction(Assembler *, Statement *);
@@ -38,8 +38,10 @@ AddressOp *new_address_op(char *);
 OpAddressMode get_address_mode(const char *);
 int is_register(const char *);
 void validate_max_number_of_words(Assembler *, Statement *);
-
+void free_instruction(Instruction *)
 
 
 
 #endif /* INSTRUCTION_HANDLER_H */
+
+// todo :: check for all usage of strcpy and check if need to free

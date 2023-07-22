@@ -15,12 +15,12 @@ void validate_instruction(Assembler *assembler, Statement *statement) {
     validate_max_number_of_words(assembler, statement);
     Instruction *instruction = new_instruction(statement);
     validate_operands(assembler, instruction);
-    free(instruction->destintion);
+    free(instruction->destination);
     free(instruction->source);
     free(instruction);
 }
 
-Instruction *new_instruction(Statement *statement)
+    Instruction *new_instruction(Statement *statement)
 {
     Instruction *instruction = (Instruction *)malloc(sizeof(Instruction));
     instruction->symbol = statement->symbol;
@@ -49,13 +49,13 @@ void set_operands(Statement *statement, Instruction *instruction)
     char *line = get_command_line(statement);
     char *params = removeFirstNWords(line, 1);
     info("Params line is : %s", params);
-    instruction->destintion = NULL;
+    instruction->destination = NULL;
     instruction->source = NULL;
     char *token = strtok(params, " ");
     if (token == NULL) { 
         return;
     }
-    instruction->destintion = new_address_op(token);
+    instruction->destination = new_address_op(token);
     token = strtok(NULL, " ");
     if (token == NULL) {
         return;
@@ -108,8 +108,24 @@ int is_register(const char *operand) {
 
 void validate_max_number_of_words(Assembler *assembler, Statement *statement) {
     char *line = get_command_line(statement);
-    int count = get_number_of_words(line);
+    int count = get_number_of_words(line, ' ');
     if (count > 3) {
         add_error(assembler, "Expecting maximum of 2 opearnd for instruction command, got %d", count);
     }
+}
+
+void free_instruction(Instruction *instruction) {
+     if (instruction == NULL) {
+        return; // Nothing to free
+    }
+
+    if (instruction->source != NULL) {
+        free(instruction->source);
+    }
+
+    if (instruction->destination != NULL) {
+        free(instruction->destination);
+    }
+
+    free(instruction);
 }

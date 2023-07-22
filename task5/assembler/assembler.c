@@ -7,8 +7,7 @@
 #include "symbol_handler.h"
 #include "logger.h"
 
-int MAX_LINE_LENGTH = 100;
-int should_read_sentence(char*);
+int MAX_LINE_LENGTH = 80;
 
 /**
  * This method is doing a syntax validation of the file
@@ -16,43 +15,57 @@ int should_read_sentence(char*);
 void syntax_validation(Assembler *assembler) {
     FILE* file = fopen("example.txt", "r");
     char line[MAX_LINE_LENGTH];
-    int line_number = 0;
+    assembler->current_line_number = 100;
     while (fgets(line, MAX_LINE_LENGTH, file) != NULL) {
-        line_number++;
         size_t length = strlen(line);
         if (length > 0 && line[length - 1] == '\n') {
             line[length - 1] = '\0';
         }
         assembler->current_line = line;
-        assembler->current_line_number = line_number;
+        assembler->current_line_number++;
         validate_statement(assembler);
     }
     error("error is %s\n", assembler->error);
 }
 
-void collect_symbols(Assembler *assembler) {
+/**
+ * This step is resposible for collecting the data before building the files, 
+ * it will fill the symbol table with all the declared symbols and will also count the 
+ * instructions and data while not building them yet.
+*/
+void data_collection(Assembler *assembler) {
     assembler->symbol_table = (SymbolTable *)malloc(sizeof(SymbolTable));
-    
-    FILE* file = fopen("example.txt", "r");
     char line[MAX_LINE_LENGTH];
-    int line_number = 0;
-    while (fgets(line, MAX_LINE_LENGTH, file) != NULL) {
-        line_number++;
+    assembler->current_line_number = 100;
+    while (fgets(line, MAX_LINE_LENGTH, assembler->current_file) != NULL) {
         size_t length = strlen(line);
         if (length > 0 && line[length - 1] == '\n') {
             line[length - 1] = '\0';
         }
         assembler->current_line = line;
-        assembler->current_line_number = line_number;
-        validate_statement(assembler);
+        collect_data(assembler);
+        assembler->current_line_number++;
     }
-    error("error is %s\n", assembler->error);
 }
 
+void build_files(Assembler *assembler) {
+    char line[MAX_LINE_LENGTH];
+    assembler->current_line_number = 100;
+    while (fgets(line, MAX_LINE_LENGTH, assembler->current_file) != NULL) {
+        size_t length = strlen(line);
+        if (length > 0 && line[length - 1] == '\n') {
+            line[length - 1] = '\0';
+        }
+        assembler->current_line = line;
+        validate_statement(assembler);
+        assembler->current_line_number++;
+    }
+}
 
 
 /**
  * Todo :: add doc
+ * create close_assembler method
 */
 void add_error(Assembler *assembler, const char *unformatted_error, ...) {
     // log the line number
@@ -66,45 +79,3 @@ void add_error(Assembler *assembler, const char *unformatted_error, ...) {
     va_end(args);
     strcat(assembler->error , error);
 }
-
-
-
-//typedef struct operand {
-//    char *name;
-//    address_mode mode
-//} Operand;
-//
-//static struct {
-//	const char *decString;
-//	labelType type;
-//} decTab[] = {
-//	{
-//	".code", labelCode}, {
-//	".data", labelData}, {
-//	".extern", labelExtern}, {
-//	".entry", labelEntry}, {
-//".string", labelString},};
-//
-//typedef struct instruction {
-//    operation op;
-//    Operand source
-//    Operand destination
-//    int encoding
-//} Instruction;
-//
-//
-//operand read_op() {
-//// if contains @r1-7 -> Register
-//// if is an integer -> Immediate
-//// otherwise -> Direct
-//}
-//
-//// add code for reading instruction
-// handle directive :
-    // .data
-    // .string
-    // .entry
-    // .extern
-
-// שורת הוראה - שני סיביות ראשונות הן 0
-// instruction sentence - ARE is always 0

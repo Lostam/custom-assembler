@@ -1,31 +1,28 @@
+#include "string_utils.h"
+
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
-#include "string_utils.h"
 
 // todo :: rewrite method later
 // todo :: change name to remove first word
-char *removeFirstNWords(const char *string, int N)
-{
+char *removeFirstNWords(const char *string, int N) {
     const char *start = strdup(string);
 
     // Skip leading whitespaces
-    while (isspace(*start))
-    {
+    while (isspace(*start)) {
         start++;
     }
 
     // Find the end of the first word
     const char *end = start;
-    while (*end != '\0' && !isspace(*end))
-    {
+    while (*end != '\0' && !isspace(*end)) {
         end++;
     }
 
     // Skip trailing whitespaces after the first word
-    while (isspace(*end))
-    {
+    while (isspace(*end)) {
         end++;
     }
 
@@ -34,8 +31,7 @@ char *removeFirstNWords(const char *string, int N)
 
     // Allocate memory for the result
     char *result = (char *)malloc((length + 1) * sizeof(char));
-    if (result == NULL)
-    {
+    if (result == NULL) {
         fprintf(stderr, "Memory allocation failed\n");
         return NULL;
     }
@@ -46,42 +42,34 @@ char *removeFirstNWords(const char *string, int N)
     return result;
 }
 
-int get_number_of_words(const char *original)
-{
-    if (is_empty(original))
-    {
+int get_number_of_words(const char *original, char delimiter) {
+    if (is_empty(original)) {
         return 0;
     }
     char *copy = strdup(original);
     int count = 0;
 
-    char *token = strtok(copy, " ");
+    char *token = strtok(copy, delimiter);
 
-    while (token != NULL)
-    {
+    while (token != NULL) {
         count++;
-        token = strtok(NULL, " ");
+        token = strtok(NULL, delimiter);
     }
 
     return count;
 }
 
-int is_whole_number(const char *original)
-{
-    if (is_empty(original))
-    {
+int is_whole_number(const char *original) {
+    if (is_empty(original)) {
         return 0;
     }
     char *string = strdup(original);
-    if (!isdigit(*string) && strncmp(string, "-", 1))
-    {
+    if (!isdigit(*string) && strncmp(string, "-", 1)) {
         return 0;
     }
     string++;
-    while (*string != '\0')
-    {
-        if (!isdigit(*string))
-        {
+    while (*string != '\0') {
+        if (!isdigit(*string)) {
             return 0;
         }
         string++;
@@ -90,6 +78,6 @@ int is_whole_number(const char *original)
     return 1;
 }
 
-int is_empty(const char *string){
+int is_empty(const char *string) {
     return ((!string) || !string[0]);
 }

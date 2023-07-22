@@ -16,9 +16,17 @@ typedef enum {
     STATEMENT_UNKNOWN
 } StatementType;
 
+// bad name, StatementType is already taken
+typedef enum {
+    STATEMENT_GOAL_NONE,
+    STATEMENT_GOAL_DATA,
+    STATEMENT_GOAL_INSTRUCTION,
+} StatementGoal;
+
 typedef struct {
     const char* line;
     StatementType type;
+    StatementGoal goal;
     const char *symbol; // is it needed
 } Statement;
 
@@ -26,6 +34,7 @@ void set_statement_values(Statement *,const char *);
 Statement *new_statement(const char *);
 char *get_command_line(Statement *);
 void validate_statement(Assembler *);
+void set_statement_goal(Statement *)
 
 #endif /* STATEMENT_UTILS_H */
 

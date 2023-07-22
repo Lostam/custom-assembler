@@ -6,10 +6,10 @@
 
 typedef enum
 {
-    DATA,
-    STRING,
-    ENTRY,
-    EXTERNAL
+    DIRECTIVE_TYPE_DATA,
+    DIRECTIVE_TYPE_STRING,
+    DIRECTIVE_TYPE_ENTRY,
+    DIRECTIVE_TYPE_EXTERNAL
 } DirectiveType;
 
 typedef struct
@@ -23,7 +23,7 @@ typedef struct
     const char *symbol;
     DirectiveType type;
     char *type_str;// maybe join with type
-    const char *params;
+    const char *params; // fixme make sure to remove whitespaces
 } Directive;
 
 void validate_directive(Assembler *, Statement *);
@@ -34,6 +34,7 @@ DirectiveType string_to_directive(const char *);
 void validate_data_params(Assembler *, Directive *);
 int validate_string_params(Assembler *, Directive *);
 void validate_entry_extern_params(Assembler *, Directive *);
+void free_directive(Directive *);
 
 
 

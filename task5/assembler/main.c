@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     
     // use initializtion method
     Assembler *assembler = (Assembler*)malloc(sizeof(Assembler));
-    assembler->file = file;
+    assembler->current_file = file;
     assembler->iteration_step = SYNTAX_VALIDATION;
     // use constant
     assembler->error = malloc(200 * sizeof(char));
@@ -25,7 +25,6 @@ int main(int argc, char *argv[]) {
     // stop if error
     collect_symbols(assembler);
     // stop if error
-    validate_symbols(assembler);
     // stop if error
     build_files(assembler);
 

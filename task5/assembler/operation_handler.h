@@ -42,4 +42,5 @@ OperationType string_to_operation(const char *op_str);
 int is_valid_operation_name(const char *op_str);
 int validate_operands(Assembler *, Instruction *);
 int is_address_in_array(const int *, size_t , AddressOp *);
+int get_operands_number(OperationType);
 #endif /* OPERATION_UTILS_H */

@@ -97,3 +97,20 @@ char *get_command_line(Statement *statement) {
     }
     return cmd_line;
 }
+
+void set_statement_goal(Statement *statement) {
+    statement->goal = STATEMENT_GOAL_NONE;
+    if (statement->type == STATEMENT_TYPE_INSTRUCTION) {
+        statement->goal = STATEMENT_GOAL_INSTRUCTION;
+    }
+    if (statement->type == STATEMENT_TYPE_DIRECTIVE) {
+        Directive *directive = new_directive(statement);
+        if (directive->type == DIRECTIVE_TYPE_DATA || directive->type == DIRECTIVE_TYPE_STRING) {
+            statement->goal = STATEMENT_GOAL_INSTRUCTION;
+        } 
+        free_directive(directive);
+    }
+}
+
+
+// add method :: mark_symbol_as_entry

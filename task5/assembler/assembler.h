@@ -16,19 +16,14 @@ typedef enum itr_step {
     FILES_CREATING,     
 } IterationStep;
 
-/**
- * @brief Represents a mapping between a label and its corresponding line number.
- */
-// change name to SymbolEntry
-typedef struct {
-    char* label;    /**< The label string. */
-    int line;       /**< The line number associated with the label. */
-} SymbolKV;
-
-typedef struct {
-    SymbolKV **table;    /**< The label string. */
-    size_t size;       /**< The line number associated with the label. */
-} SymbolTable;
+// /**
+//  * @brief Represents a mapping between a label and its corresponding Symbol instance.
+//  */
+// // change name to SymbolEntry
+// typedef struct {
+//     char* str;    /**< The label string. */
+//     Symbol symbol;       /**< The line number associated with the label. */
+// } SymbolKV;
 
 typedef struct {
     size_t number;
@@ -46,14 +41,15 @@ typedef struct {
     IterationStep iteration_step;       /**< The current iteration step. */
     char* error;       /**< The error messages, null if there are no errors. */
     FILE* current_file;       
-    char *current_line;
+    char *current_line; // limit to 100
     char *current_line_number;
 } Assembler;
 
 Assembler* create_assembler(FILE *);
-void destroy_assembler(Assembler *);
+void close_assembler(Assembler *);
 void syntax_validation(Assembler *);
 void add_error(Assembler *,const char *, ...);
-void collect_symbols(Assembler *);
+void data_collection(Assembler *);
+void build_files(Assembler *);
 
 #endif /* ASSEMBLER_H */
