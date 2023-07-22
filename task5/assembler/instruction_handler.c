@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "statementer.h"
+#include "statement_handler.h"
 #include "instruction_handler.h"
 #include "assembler.h"
 #include "logger.h"
@@ -11,21 +11,12 @@
 // #define VALID_DIRECTIVES ".data, .string, .entry, .extern"
 
 // assume the structure of the line is : "OPTIONAL_LABEL: .<SOME_STRING>..."
-void validate_instruction(Assembler *assembler, Statement *statement)
-{   
-    validate_max_number_of_words(*assembler, *statement);
+void validate_instruction(Assembler *assembler, Statement *statement) {
+    validate_max_number_of_words(assembler, statement);
     Instruction *instruction = new_instruction(statement);
-    if (instruction->type == -1)
-    {
-        // fixme
-        error("Found invalid instruction %s, valid instructions are %s", instruction->type_str, VALID_DIRECTIVES);
-    }
-    if (instruction->type == DATA)
-    {
-        info("Validating type %s\n", instruction->type_str);
-        validate_data_params(assembler, instruction);
-        info("Validated %s\n", statement->line);
-    }
+    validate_operands(assembler, instruction);
+    free(instruction->destintion);
+    free(instruction->source);
     free(instruction);
 }
 
@@ -53,7 +44,7 @@ char *get_instruction_params(Statement *statement)
     return removeFirstNWords(line, 1);
 }
 
-char *set_operands(Statement *statement, Instruction *instruction)
+void set_operands(Statement *statement, Instruction *instruction)
 {
     char *line = get_command_line(statement);
     char *params = removeFirstNWords(line, 1);
@@ -69,20 +60,51 @@ char *set_operands(Statement *statement, Instruction *instruction)
     if (token == NULL) {
         return;
     }
-    instruction->destintion = new_address_op(token);
-    token = strtok(NULL, " ");
-    if (token == NULL) {
-        error("Expected maximum of 2 words but found 3");
-        return; // todo :: add error here
-    }
-
+    instruction->source = new_address_op(token);
 }
-
+//===================================================
+// OP ADDRESS START
+//===================================================
 // todo move to another class
 AddressOp *new_address_op(char *operand) {
     AddressOp *addressOp = (AddressOp *)malloc(sizeof(AddressOp));
-
+    addressOp->value = operand;
+    addressOp->type = get_address_mode(operand);
+    return addressOp;
 }
+
+OpAddressMode get_address_mode(const char *operand) {
+    if (is_empty(operand)) {
+        return Undefined;
+    }
+    if (is_register(operand)) {
+        return Register;
+    }
+    if (is_whole_number(operand)) {
+        return Immediate;
+    }
+    return Direct;
+}
+
+int is_register(const char *operand) {
+    char *copy = strdup(operand);
+    if (strlen(copy)!=3) {
+        return 0;
+    }
+    if (strncmp(copy, "@r", 2)) {
+        return 0;
+    }    
+    if (!isdigit(copy[2]) || 0 > atoi(&copy[2]) || atoi(&copy[2]) > 7) {
+        return 0;
+    }
+    return 1;
+}
+
+//===================================================
+// OP ADDRESS END
+//===================================================
+
+
 
 void validate_max_number_of_words(Assembler *assembler, Statement *statement) {
     char *line = get_command_line(statement);

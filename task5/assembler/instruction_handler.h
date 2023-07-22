@@ -4,8 +4,9 @@
 #include "assembler.h"
 #include "string_utils.h"
 #include "operation_handler.h"
+#include "statement_handler.h"
 
-typedef enum { Direct = 1, Immediate = 3, Register = 5, Undefined = -1 } OpAddressMode ;
+typedef enum {  Immediate = 1, Direct = 3, Register = 5, Undefined = -1 } OpAddressMode ;
 
 
 // Operand address encoding :
@@ -30,8 +31,14 @@ typedef struct
 
 void validate_instruction(Assembler *, Statement *);
 Instruction *new_instruction(Statement *);
-char *get_directive_name(Statement *);
-char *get_directive_params(Statement *);
+char *get_operation_name(Statement *);
+char *get_instruction_params(Statement *);
+void set_operands(Statement *, Instruction *);
+AddressOp *new_address_op(char *);
+OpAddressMode get_address_mode(const char *);
+int is_register(const char *);
+void validate_max_number_of_words(Assembler *, Statement *);
+
 
 
 

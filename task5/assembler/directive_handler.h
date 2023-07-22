@@ -31,9 +31,10 @@ Directive *new_directive(Statement *);
 char *get_directive_name(Statement *);
 char *get_directive_params(Statement *);
 DirectiveType string_to_directive(const char *);
-void validate_data_type(Assembler *, Directive *);
-void validate_string_type(Assembler *, Directive *);
+void validate_data_params(Assembler *, Directive *);
+int validate_string_params(Assembler *, Directive *);
 void validate_entry_extern_params(Assembler *, Directive *);
+
 
 
 #endif /* DIRECTIVE_HANDLER_H */

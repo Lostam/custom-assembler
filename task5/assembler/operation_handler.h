@@ -3,6 +3,7 @@
 
 #include <string.h>
 
+
 typedef enum
 {
     mov,
@@ -29,7 +30,16 @@ typedef struct
     OperationType op;
 } OpeationMap;
 
-OperationType string_to_operation(const char *op_str);
-int is_valid_operand_name(const char *op_str);
+typedef struct
+{
+    OperationType op;
+    OpAddressMode source[3];
+    OpAddressMode destination[3];
+} OperationAllowdOperands;
 
+#include "instruction_handler.h"
+OperationType string_to_operation(const char *op_str);
+int is_valid_operation_name(const char *op_str);
+int validate_operands(Assembler *, Instruction *);
+int is_address_in_array(const int *, size_t , AddressOp *);
 #endif /* OPERATION_UTILS_H */

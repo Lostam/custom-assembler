@@ -2,32 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "statementer.h"
+#include "statement_handler.h"
 #include "assembler.h"
+#include "symbol_handler.h"
 #include "logger.h"
 
 int MAX_LINE_LENGTH = 100;
 int should_read_sentence(char*);
-
-int main(int argc, char *argv[]) {
-    FILE* file = fopen("example.txt", "r");
-    if (file == NULL) {
-        printf("Failed to open the file.\n");
-        return 1;
-    }
-    
-    // use initializtion method
-    Assembler *assembler = (Assembler*)malloc(sizeof(Assembler));
-    assembler->file = file;
-    assembler->iteration_step = SYNTAX_VALIDATION;
-    // use constant
-    assembler->error = malloc(200 * sizeof(char));
-    syntax_validation(assembler);
-
-    fclose(file);
-
-    return 0;
-}
 
 /**
  * This method is doing a syntax validation of the file
@@ -35,20 +16,47 @@ int main(int argc, char *argv[]) {
 void syntax_validation(Assembler *assembler) {
     FILE* file = fopen("example.txt", "r");
     char line[MAX_LINE_LENGTH];
+    int line_number = 0;
     while (fgets(line, MAX_LINE_LENGTH, file) != NULL) {
+        line_number++;
         size_t length = strlen(line);
         if (length > 0 && line[length - 1] == '\n') {
             line[length - 1] = '\0';
         }
-        validate_statement(assembler, line);
+        assembler->current_line = line;
+        assembler->current_line_number = line_number;
+        validate_statement(assembler);
     }
     error("error is %s\n", assembler->error);
 }
+
+void collect_symbols(Assembler *assembler) {
+    assembler->symbol_table = (SymbolTable *)malloc(sizeof(SymbolTable));
+    
+    FILE* file = fopen("example.txt", "r");
+    char line[MAX_LINE_LENGTH];
+    int line_number = 0;
+    while (fgets(line, MAX_LINE_LENGTH, file) != NULL) {
+        line_number++;
+        size_t length = strlen(line);
+        if (length > 0 && line[length - 1] == '\n') {
+            line[length - 1] = '\0';
+        }
+        assembler->current_line = line;
+        assembler->current_line_number = line_number;
+        validate_statement(assembler);
+    }
+    error("error is %s\n", assembler->error);
+}
+
+
 
 /**
  * Todo :: add doc
 */
 void add_error(Assembler *assembler, const char *unformatted_error, ...) {
+    // log the line number
+    // log the line content
     va_list args;
     va_start(args, unformatted_error);
 

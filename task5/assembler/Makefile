@@ -1,12 +1,12 @@
 GCC = gcc -g -ansi -Wall
 program_NAME := assembler
-program_SRCS := assembler.c operation_handler.c statementer.c string_utils.c directive_handler.c logger.c
-program_OBJS := ${program_SRCS:.c=.o}
+SOURCES := assembler.c operation_handler.c statement_handler.c string_utils.c directive_handler.c logger.c instruction_handler.c symbol_handler.c
+program_OBJS := ${SOURCES:.c=.o}
 LINE_BREAK = "____________________________"
 
 
 $(program_NAME): $(program_OBJS)
-	@ $(LINK.c) $(program_SRCS) -o $@
+	@ $(LINK.c) $(SOURCES) -o $@
 
 run_tests :
 	@for file in inputs/*; do \

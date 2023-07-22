@@ -3,7 +3,7 @@
         "stdlib.h": "c",
         "ctype.h": "c",
         "stdio.h": "c",
-        "statementer.h": "c",
+        "statement_handler.h": "c",
         "assembler.h": "c",
         "string.h": "c",
         "string_utils.h": "c",
@@ -14,6 +14,16 @@
         "__config": "c",
         "sstream": "c",
         "cstdarg": "c",
-        "format": "c"
+        "format": "c",
+        "string": "c",
+        "iosfwd": "c",
+        "complex": "c",
+        "instruction_handler.h": "c",
+        "locale": "c",
+        "ostream": "c",
+        "new": "c",
+        "memory_resource": "c",
+        "memory": "c",
+        "logger.h": "c"
     }
 }

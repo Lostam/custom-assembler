@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "statementer.h"
+#include "statement_handler.h"
 #include "directive_handler.h"
 #include "assembler.h"
 #include "logger.h"
@@ -204,7 +204,7 @@ int validate_string_params(Assembler *assembler, Directive *directive)
     return 1;
 }
 
-int validate_entry_extern_params(Assembler *assembler, Directive *directive)
+void validate_entry_extern_params(Assembler *assembler, Directive *directive)
 {
     if (directive->symbol != NULL)
     {
