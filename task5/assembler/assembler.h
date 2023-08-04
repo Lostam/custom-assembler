@@ -1,55 +1,43 @@
 #ifndef ASSEMBLER_H
 #define ASSEMBLER_H
 
+typedef struct assembler_s Assembler;
+
+#include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdarg.h>
-
-/**
- * @brief Represents the possible iteration steps.
- */
-typedef enum itr_step {
-    PRE_MACRO,      /**< Pre-macro iteration step. */
-    SYNTAX_VALIDATION,      
-    SYMBOL_LOADING,     
-    TABLE_CREATING,    
-    FILES_CREATING,     
-} IterationStep;
-
-// /**
-//  * @brief Represents a mapping between a label and its corresponding Symbol instance.
-//  */
-// // change name to SymbolEntry
-// typedef struct {
-//     char* str;    /**< The label string. */
-//     Symbol symbol;       /**< The line number associated with the label. */
-// } SymbolKV;
+#include <stdlib.h>
+#include "word_handler.h"
+#include "symbol_handler.h"
 
 typedef struct {
     size_t number;
-    char *content;       
+    char *content;
 } Line;
-
 
 /**
  * @brief Represents an assembler object.
  */
-typedef struct {
-    int IC;                             /**< The instruction counter. */
-    int DC;                             /**< The data counter. */
-    SymbolTable *symbol_table;        /**< The mapping of labels to line numbers. */
-    IterationStep iteration_step;       /**< The current iteration step. */
-    char* error;       /**< The error messages, null if there are no errors. */
-    FILE* current_file;       
-    char *current_line; // limit to 100
-    char *current_line_number;
-} Assembler;
+struct assembler_s {
+    int IC;                       /**< The instruction counter. */
+    int DC;                       /**< The data counter. */
+    SymbolTable *symbol_table;    /**< The mapping of labels to line numbers. */
+    StringLinkedList *words_l_list;    /**< The mapping of labels to line numbers. */
+    char *error;                  /**< The error messages, null if there are no errors. */
+    int has_error;                  /**< The error messages, null if there are no errors. */
+    FILE *as_file;
+    char *file_basename;
+    char *current_line;  // limit to 100 // make a struct
+    int current_line_number;
+};
 
-Assembler* create_assembler(FILE *);
+Assembler *create_assembler(FILE *);
 void close_assembler(Assembler *);
 void syntax_validation(Assembler *);
-void add_error(Assembler *,const char *, ...);
+void add_error(Assembler *, const char *, ...);
 void data_collection(Assembler *);
-void build_files(Assembler *);
+void build_data_for_files(Assembler *);
+Assembler *new_assembler(char *);
 
+// todo:: check words are not larger then 1024
 #endif /* ASSEMBLER_H */

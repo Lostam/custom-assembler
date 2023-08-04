@@ -52,6 +52,7 @@ void mark_entry(Assembler *assembler, Statement *statement) {
             if (symbol != NULL) {
                 symbol->is_entry = 1;
             }
+            free(copy);
             // do something incase not found?
         }
         free_directive(directive);

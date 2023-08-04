@@ -1,13 +1,14 @@
-#include <stdio.h>
-#include <stdarg.h>
-#include <time.h>
-#include <string.h>
 #include "logger.h"
+
+#include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
+#include <time.h>
 
 char* getTimestamp() {
     time_t currentTime = time(NULL);
     char* timestamp = ctime(&currentTime);
-    timestamp[strlen(timestamp) - 1] = '\0'; // Remove trailing newline
+    timestamp[strlen(timestamp) - 1] = '\0';  // Remove trailing newline
     return timestamp;
 }
 
@@ -45,14 +46,14 @@ void warn(const char* format, ...) {
 }
 
 void error(const char* format, ...) {
-    printf("[%s] [ERROR] ", getTimestamp());
+    fprintf(stderr, "[%s] [ERROR] ", getTimestamp());
 
     va_list args;
     va_start(args, format);
-    vprintf(format, args);
+    vfprintf(stderr, format, args);
     va_end(args);
 
-    printf("\n");
+    fprintf(stderr, "\n");
 }
 
 // fixme :: maybe improve this code later;

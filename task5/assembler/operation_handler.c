@@ -1,8 +1,12 @@
 #include "operation_handler.h"
 
+#include <ctype.h>
 #include <string.h>
 
+#include "assembler.h"
 #include "logger.h"
+#include "macros.h"
+#include "string_utils.h"
 
 // todo :: move to constants file
 OpeationMap operation_mapping[] = {
@@ -32,18 +36,18 @@ OperationAllowdOperands allowd_operands_mapping[] = {
     {cmp, {Immediate, Direct, Register}, {Immediate, Direct, Register}},
     {add, {Immediate, Direct, Register}, {Direct, Register}},
     {sub, {Immediate, Direct, Register}, {Direct, Register}},
-    {not, {}, {Direct, Register}},
-    {clr, {}, {Direct, Register}},
+    {not, {Undefined}, {Direct, Register}},
+    {clr, {Undefined}, {Direct, Register}},
     {lea, {Register}, {Direct, Register}},
-    {inc, {}, {Direct, Register}},
-    {dec, {}, {Direct, Register}},
-    {jmp, {}, {Direct, Register}},
-    {bne, {}, {Direct, Register}},
-    {red, {}, {Direct, Register}},
-    {prn, {}, {Immediate, Direct, Register}},
-    {jsr, {}, {Direct, Register}},
-    {rts, {}, {}},
-    {stop, {}, {}},
+    {inc, {Undefined}, {Direct, Register}},
+    {dec, {Undefined}, {Direct, Register}},
+    {jmp, {Undefined}, {Direct, Register}},
+    {bne, {Undefined}, {Direct, Register}},
+    {red, {Undefined}, {Direct, Register}},
+    {prn, {Undefined}, {Immediate, Direct, Register}},
+    {jsr, {Undefined}, {Direct, Register}},
+    {rts, {Undefined}, {Undefined}},
+    {stop, {Undefined}, {Undefined}},
 };
 
 OperationType string_to_operation(const char *op_str) {
@@ -52,39 +56,52 @@ OperationType string_to_operation(const char *op_str) {
             return operation_mapping[i].op;
         }
     }
-    return -1;
+    return invalid_op;
+}
+
+const char *operation_to_string(OperationType operation) {
+    for (int i = 0; i < sizeof(operation_mapping) / sizeof(OpeationMap); i++) {
+        if (operation_mapping[i].op == operation) {
+            return operation_mapping[i].str;
+        }
+    }
+    return "";
 }
 
 int is_valid_operation_name(const char *op_str) {
     OperationType op = string_to_operation(op_str);
-    if (op == -1) {
+    if (op == invalid_op) {
         return 0;
     }
     return 1;
 }
 
-// fixme :: why not void?
-int validate_operands(Assembler *assembler, Instruction *instruction) {
-    OperationAllowdOperands *allowed_operands = get_allowed_operand(instruction->operation);
+void validate_operands(Assembler *assembler, OperationType operation, Operand *operand) {
+    OperationAllowdOperands *allowed_operands = get_allowed_operand(operation);
     if (allowed_operands != NULL) {
-        size_t size = sizeof(allowd_operands_mapping[i].destination) / sizeof(allowd_operands_mapping[i].destination[0]);
-        if (!is_address_in_array(allowd_operands_mapping->destination, size, instruction->destination)) {
-            error("destintation is not in array");
+        OpAddressMode *arr;
+        const char *name;
+        if (operand->pos == DESTINATION) {
+            arr = allowed_operands->destination;
+            name = "destination";
         }
-
-        size_t size2 = sizeof(allowd_operands_mapping[i].source) / sizeof(allowd_operands_mapping[i].source[0]);
-        if (!is_address_in_array(allowd_operands_mapping->source, size, instruction->source)) {
-            error("source is not in array");
+        if (operand->pos == SOURCE) {
+            arr = allowed_operands->source;
+            name = "source";
         }
-        // todo :: finish me
-        // return op_to_operand_mapping[i].op;
+        
+        if (!is_address_in_array(arr, operand->type)) {
+            add_error(assembler, "Operation [%s] has an invalid [%s] operand [%s], the operation is not supporting address mode %d\n",
+         operation_to_string(operation), name, operand->value, operand->type);
+        }
+        return;
     }
-    return -1;
 }
 
-// todo :: move it
-int is_address_in_array(const int *array, size_t size, AddressOp *target) {
-    for (size_t i = 0; i < size; i++) {
+// fixme :: should use pointer?
+int is_address_in_array(OpAddressMode array[], OpAddressMode target) {
+    size_t size = ARRAY_SIZE(array);  // fixme
+    for (size_t i = 0; i <= size; i++) {
         if (array[i] == target) {
             return 1;
         }
@@ -100,14 +117,15 @@ OperationAllowdOperands *get_allowed_operand(OperationType operation) {
     }
     return NULL;
 }
+// todo :: change me to count not undefined
 int get_operands_number(OperationType operation) {
     OperationAllowdOperands *allowed_operands = get_allowed_operand(operation);
-    if (allowed_operands != NULL) {
+    if (allowed_operands == NULL) {
         return -1;
     }
-    // todo :: consider extracting to method
-    int is_dest_empty = sizeof(allowed_operands->destination) / sizeof(allowed_operands->destination[0]);
-    int is_src_empty = sizeof(allowed_operands->source) / sizeof(allowed_operands->source[0]);
+
+    int is_dest_empty = allowed_operands->destination[0] == Undefined;
+    int is_src_empty = allowed_operands->source[0] == Undefined;
 
     if (!is_src_empty && !is_dest_empty) {
         return 2;
@@ -118,11 +136,54 @@ int get_operands_number(OperationType operation) {
     }
 }
 
-int is_array_empty(OpAddressMode arr[]) {
-    for (int i = 0; i < 3; i++) {
-        if (arr[i] != Undefined) {
-            return false;
-        }
-    }
-    return true;
+// todo :: make sure it is freeded later
+// Operand *new_operand(const char *operand, OpAddressPosition pos) {
+//     Operand *addressOp = (Operand *)malloc(sizeof(Operand));
+//     addressOp->value = operand;
+//     addressOp->type = get_address_mode(operand);
+//     addressOp->pos = pos;
+//     return addressOp;
+// }
+
+Operand *new_empty_operand(OpAddressPosition pos) {
+    Operand *operand = (Operand *)malloc(sizeof(Operand));
+    operand->pos = pos;
+    operand->type = Undefined;
+    operand->value = "\0";
+    return operand;
 }
+
+void add_operand_values(Operand *operand, const char *value) {
+    operand->value = value;
+    operand->type = get_address_mode(value);
+    debug("Address mode for operand [%s] is : %d", value, operand->type);
+}
+
+OpAddressMode get_address_mode(const char *operand) {
+    if (is_empty(operand)) {
+        return Undefined;
+    }
+    if (is_register(operand)) {
+        return Register;
+    }
+    if (is_whole_number(operand)) {
+        return Immediate;
+    }
+    return Direct;
+}
+
+int is_register(const char *operand) {
+    char *copy = strdup(operand);
+    if (strlen(copy) != 3) {
+        return 0;
+    }
+    if (strncmp(copy, "@r", 2)) {
+        return 0;
+    }
+    if (!isdigit(copy[2]) || 0 > atoi(&copy[2]) || atoi(&copy[2]) > 7) {
+        return 0;
+    }
+    return 1;
+}
+
+// todo :: add free operand

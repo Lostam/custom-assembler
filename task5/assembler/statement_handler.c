@@ -12,7 +12,7 @@
 #include "operation_handler.h"
 
 // create a mapping the string representation of the operation to the operation enum, also write a method which takes as parameter a string and returns the operation enum
-
+// todo :: check line length
 Statement *new_statement(const char *line) {
     Statement *statement = (Statement *)malloc(sizeof(Statement));
     statement->line = line;
@@ -24,7 +24,7 @@ Statement *new_statement(const char *line) {
 
 void validate_statement(Assembler *assembler) {
     Statement *statement = new_statement(assembler->current_line);
-    info("statement created [%s]", assembler->current_line);
+    info("statement created [%s] for line %d", assembler->current_line, assembler->current_line_number);
     if (statement->type == STATEMENT_UNKNOWN) {
         // todo :: improve error log
         warn("Invalid statement found [%s]", statement->line);
@@ -47,7 +47,7 @@ void set_statement_values(Statement *statement, const char *original_line) {
     char *line = strdup(original_line);
     int empty = 1;
     statement->line = original_line;
-    statement->symbol = "";
+    statement->symbol = "\0";
     for (size_t i = 0; i < strlen(line); i++) {
         if (!isspace(line[i])) {
             empty = 0;
@@ -66,9 +66,9 @@ void set_statement_values(Statement *statement, const char *original_line) {
     int len = strlen(word);
     int is_symbol = word[len - 1] == ':';
     if (is_symbol) {
-        debug("Found symbol %s in line %s", word, original_line);
         // todo:: check if is valid symbol
         // check for reserved words
+        word[len - 1] = '\0';
         statement->symbol = word;
         word = strtok(NULL, " ");
     }
@@ -76,6 +76,7 @@ void set_statement_values(Statement *statement, const char *original_line) {
     // check for null
 
     if (word[0] == '.') {
+
         statement->type = STATEMENT_TYPE_DIRECTIVE;
         return;
     }
@@ -90,9 +91,12 @@ void set_statement_values(Statement *statement, const char *original_line) {
 
 char *get_command_line(Statement *statement) {
     char *cmd_line = strdup(statement->line);  // Create a copy of the line
+    if (strcmp(statement->symbol, "\0") == 0) {
+        return cmd_line;
+    }
     char *occurrence = strstr(cmd_line, statement->symbol);
     if (occurrence != NULL) {
-        size_t symbol_len = strlen(statement->symbol);
+        size_t symbol_len = strlen(statement->symbol) + 1; // adding 1 for the missing :
         memmove(occurrence, occurrence + symbol_len, strlen(occurrence + symbol_len) + 1);
     }
     return cmd_line;
@@ -106,10 +110,14 @@ void set_statement_goal(Statement *statement) {
     if (statement->type == STATEMENT_TYPE_DIRECTIVE) {
         Directive *directive = new_directive(statement);
         if (directive->type == DIRECTIVE_TYPE_DATA || directive->type == DIRECTIVE_TYPE_STRING) {
-            statement->goal = STATEMENT_GOAL_INSTRUCTION;
+            statement->goal = STATEMENT_GOAL_DATA;
         } 
         free_directive(directive);
     }
+}
+
+void free_statement(Statement *statement) {
+    free(statement);
 }
 
 

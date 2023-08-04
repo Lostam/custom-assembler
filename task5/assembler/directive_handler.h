@@ -1,30 +1,32 @@
 #ifndef DIRECTIVE_HANDLER_H
 #define DIRECTIVE_HANDLER_H
 
+typedef struct directive_s Directive;
+typedef struct directive_map_s DirectiveMap;
+typedef enum directive_type_s DirectiveType;
+
 #include "assembler.h"
+#include "statement_handler.h"
 #include "string_utils.h"
 
-typedef enum
-{
+enum directive_type_s {
     DIRECTIVE_TYPE_DATA,
     DIRECTIVE_TYPE_STRING,
     DIRECTIVE_TYPE_ENTRY,
     DIRECTIVE_TYPE_EXTERNAL
-} DirectiveType;
+};
 
-typedef struct
-{
+struct directive_map_s {
     const char *str;
     DirectiveType type;
-} DirectiveMap;
+};
 
-typedef struct
-{
+struct directive_s {
     const char *symbol;
     DirectiveType type;
-    char *type_str;// maybe join with type
-    const char *params; // fixme make sure to remove whitespaces
-} Directive;
+    char *type_str;      // maybe join with type
+    const char *params;  // fixme make sure to remove whitespaces
+};
 
 void validate_directive(Assembler *, Statement *);
 Directive *new_directive(Statement *);
@@ -35,7 +37,5 @@ void validate_data_params(Assembler *, Directive *);
 int validate_string_params(Assembler *, Directive *);
 void validate_entry_extern_params(Assembler *, Directive *);
 void free_directive(Directive *);
-
-
 
 #endif /* DIRECTIVE_HANDLER_H */

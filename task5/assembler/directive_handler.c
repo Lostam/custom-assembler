@@ -9,6 +9,7 @@
 #include "logger.h"
 #include "statement_handler.h"
 #include "string_utils.h"
+#include "symbol_handler.h"
 
 #define VALID_DIRECTIVES ".data, .string, .entry, .extern"
 
@@ -16,30 +17,23 @@
 void validate_directive(Assembler *assembler, Statement *statement) {
     Directive *directive = new_directive(statement);
     if (directive->type == -1) {
-        // fixme
-        error("Found invalid directive %s, valid directives are %s", directive->type_str, VALID_DIRECTIVES);
+        add_error(assembler, "Found invalid directive .%s, valid directives are %s", directive->type_str, VALID_DIRECTIVES);
+        return;
     }
     if (directive->type == DIRECTIVE_TYPE_DATA) {
-        info("Validating type %s\n", directive->type_str);
         validate_data_params(assembler, directive);
-        info("Validated %s\n", statement->line);
+        info("Validated %s", statement->line);
     }
     if (directive->type == DIRECTIVE_TYPE_STRING) {
-        info("Validating type %s\n", directive->type_str);
         validate_string_params(assembler, directive);
-        info("Validated %s\n", statement->line);
+        info("Validated %s", statement->line);
     }
-    if (directive->type == DIRECTIVE_TYPE_ENTRY) {
-        info("Validating type %s\n", directive->type_str);
+    // todo :: join 2 ifs
+    if (directive->type == DIRECTIVE_TYPE_ENTRY || directive->type == DIRECTIVE_TYPE_EXTERNAL) {
         validate_entry_extern_params(assembler, directive);
         info("Validated %s\n", statement->line);
     }
-    if (directive->type == DIRECTIVE_TYPE_EXTERNAL) {
-        info("Validating type %s\n", directive->type_str);
-        validate_entry_extern_params(assembler, directive);
-        info("Validated %s\n", statement->line);
-    }
-    free(directive);
+    free_directive(directive);
 }
 
 Directive *new_directive(Statement *statement) {
@@ -49,7 +43,6 @@ Directive *new_directive(Statement *statement) {
     directive->type_str = directive_name;
     directive->type = string_to_directive(directive_name);
     directive->params = get_directive_params(statement);
-    debug("Params are : %s", directive->params);
     return directive;
 }
 char *get_directive_name(Statement *statement) {
@@ -65,9 +58,8 @@ char *get_directive_name(Statement *statement) {
 
 char *get_directive_params(Statement *statement) {
     char *line = get_command_line(statement);
-    info("Command line is : %s", line);
     // char *first_word = strtok(line, " "); // Extract the first word
-    return removeFirstNWords(line, 1);
+    return trim_spaces(remove_first_n_words(line, 1));
 }
 
 DirectiveMap directive_mapping[] = {
@@ -85,92 +77,64 @@ DirectiveType string_to_directive(const char *str) {
     return -1;
 }
 
-// todo :: make sure -,+ are also valid, 
+// todo :: make sure -,+ are also valid,
+// todo :: make sure the is smaller then 65535(1111111111111111)
 void validate_data_params(Assembler *assembler, Directive *directive) {
-    // get the cmd line without .data entry
     char *entry = strdup(directive->params);
-    size_t length = strlen(entry);
-    int isDigitPresent = 0;
-    int isCommaExpected = 0;
+    char* token;
+    char delimiters[] = ",";
+    int expecting_digit = 1; 
 
-    for (size_t i = 0; i < length; i++) {
-        char currentChar = entry[i];
+    token = strtok(entry, delimiters);
+    while (token != NULL) {
+        char* endptr;
+        int is_whole = is_whole_number(token);
 
-        // Skip whitespace characters
-        if (isspace(currentChar)) {
-            continue;
+        if (!is_whole) {
+            add_error(assembler, "Invalid entry: '%s' is not a valid number.\n", token);
+            break;
         }
 
-        // Check for digits
-        if (isdigit(currentChar)) {
-            isDigitPresent = 1;
-            isCommaExpected = 1;
-            continue;
+        expecting_digit = 0;
+
+        token = strtok(NULL, delimiters);
+        
+        if (token != NULL && strcmp(token, ",")) {
+            expecting_digit = 1;
+            token = strtok(NULL, delimiters);
+        } else if (token != NULL) {
+            add_error(assembler, "Invalid entry: Expecting a comma after the number '%s'.\n", token);
+            break;
         }
-
-        // Check for commas
-        if (currentChar == ',') {
-            // Check if a comma is expected
-            if (!isCommaExpected) {
-                printf("Invalid data entry: Unexpected comma at position %zu\n", i);
-                return;
-            }
-
-            // Check if the comma is the last character
-            if (i == length - 1) {
-                printf("Invalid data entry: Comma found at the end of the entry\n");
-                return;
-            }
-
-            // Check if the character after the comma is a digit
-            if (!isdigit(entry[i + 1])) {
-                printf("Invalid data entry: No digit found after comma at position %zu\n", i);
-                return;
-            }
-
-            isCommaExpected = 0;
-            continue;
-        }
-
-        // Invalid character found
-        printf("Invalid data entry: Invalid character '%c' at position %zu\n", currentChar, i);
-        return;
     }
 
-    // Check if at least one digit is present
-    if (!isDigitPresent) {
-        printf("Invalid data entry: No digits present\n");
+    if (expecting_digit) {
+        add_error(assembler, "Invalid entry: Missing number after the last comma.\n");
     }
-
-    // return isDigitPresent;
-    return;
+    free(entry);
 }
 
-// todo :: rewrite method and add errors
+// todo :: make sure there are no 3 "
 int validate_string_params(Assembler *assembler, Directive *directive) {
     const char *start = directive->params;
-
-    // Check for the opening quotation mark
     if (*start != '\"') {
-        error("Invalid: Missing opening quotation mark.\n");
+        add_error(assembler, "Invalid string directive, missing opening qoutation mark.\n");
         return 0;
     }
     start++;
 
-    // Check for valid characters inside the quotation marks
     while (*start != '\"') {
         if (!isalpha(*start)) {
-            error("Invalid: Non-alphabetic character found inside quotation marks.\n");
+            add_error(assembler, "Only alphabetic values are allowed inside string directive qoutation marks, found %s", start);
             return 0;
         }
         start++;
     }
-
-    // Check for trailing characters after the closing quotation mark
+    // todo :: make sure to check for closing "
     start++;
     while (*start != '\0') {
         if (!isspace(*start)) {
-            error("Invalid: Trailing characters found after closing quotation mark.\n");
+            add_error(assembler, "Additional character after the closing quotation mark are not allowed, found %s", start);
             return 0;
         }
         start++;
@@ -180,36 +144,28 @@ int validate_string_params(Assembler *assembler, Directive *directive) {
 }
 
 void validate_entry_extern_params(Assembler *assembler, Directive *directive) {
-    if (directive->symbol != NULL) {
+    if (!is_empty(directive->symbol)) {
         warn("This assembler is not supporting symbols for .entry or .extern and so this symbol will be ignored");
     }
+    // todo :: check multiple labels
     char *input = strdup(directive->params);
-    if (input == NULL) {
-        printf("Invalid: Input is NULL.\n");
-        return;  // Input is NULL
+    if (is_empty(input)) {
+        add_error(assembler, ".extern and .entry directives must include at least label");
+        free(input);
+        return;
     }
-
-    int hasNonWhitespaceChar = 0;  // Flag to track non-whitespace character
-
-    // Check if each character is an alphabetic character or whitespace
-    for (const char *ch = input; *ch != '\0'; ch++) {
-        if (!isspace(*ch)) {
-            hasNonWhitespaceChar = 1;
-            if (!isalpha(*ch)) {
-                printf("Invalid: Non-alphabetic non-whitespace character found.\n");
-                return;  // Non-alphabetic non-whitespace character found
-            }
-        }
+    if (!is_valid_label(input)) {
+        add_error(assembler, "Invalid: label name [%s]\n", assembler->current_line);
+        free(input);
+        return;
     }
-
-    if (!hasNonWhitespaceChar) {
-        printf("Invalid: Input does not contain any non-whitespace character.\n");
-        return;  // Input contains no non-whitespace character
-    }
-
-    return;  // Input is valid
+    free(input);
+    return;
 }
 
 void free_directive(Directive *directive) {
+    free(directive->params);
+    free(directive->symbol);
+    free(directive->type_str);
     free(directive);
 }

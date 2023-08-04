@@ -5,8 +5,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "assembler.h"
-
 
 typedef enum {
     STATEMENT_TYPE_EMPTY,
@@ -30,11 +28,13 @@ typedef struct {
     const char *symbol; // is it needed
 } Statement;
 
+#include "assembler.h"
+
 void set_statement_values(Statement *,const char *);
 Statement *new_statement(const char *);
 char *get_command_line(Statement *);
 void validate_statement(Assembler *);
-void set_statement_goal(Statement *)
+void set_statement_goal(Statement *);
 
 #endif /* STATEMENT_UTILS_H */
 
