@@ -1,0 +1,533 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ASM_FILE_EXT_LEN	assembler.c	23;"	d	file:
+CODE_BASE_ADDRESS	assembler.c	24;"	d	file:
+IC	assembler.c	/^	unsigned short IC = CODE_BASE_ADDRESS, iIdx = 0, dIdx = 0;$/;"	l
+INPUT_LINE_SIZE	defs.h	4;"	d
+MAX_FILENAME_LEN	defs.h	5;"	d
+MAX_OUTPUT_LINE_LEN	defs.h	6;"	d
+Op2D	operand.h	/^typedef enum { OpLiteral = 0, OpDirect, OpRelative, Op2D, OpRegister, OpError = -1 } opType ;$/;"	e	enum:__anon2
+OpDirect	operand.h	/^typedef enum { OpLiteral = 0, OpDirect, OpRelative, Op2D, OpRegister, OpError = -1 } opType ;$/;"	e	enum:__anon2
+OpError	operand.h	/^typedef enum { OpLiteral = 0, OpDirect, OpRelative, Op2D, OpRegister, OpError = -1 } opType ;$/;"	e	enum:__anon2
+OpLiteral	operand.h	/^typedef enum { OpLiteral = 0, OpDirect, OpRelative, Op2D, OpRegister, OpError = -1 } opType ;$/;"	e	enum:__anon2
+OpRegister	operand.h	/^typedef enum { OpLiteral = 0, OpDirect, OpRelative, Op2D, OpRegister, OpError = -1 } opType ;$/;"	e	enum:__anon2
+OpRelative	operand.h	/^typedef enum { OpLiteral = 0, OpDirect, OpRelative, Op2D, OpRegister, OpError = -1 } opType ;$/;"	e	enum:__anon2
+STRINGIFY	minunit.h	2;"	d
+TOSTRING	minunit.h	3;"	d
+VGFLAGS	makefile	/^VGFLAGS := -g -fno-inline-functions -fno-inline-functions-called-once \\$/;"	m
+_ASSEMBLER_H_	assembler.h	2;"	d
+_BST_H_	bst.h	2;"	d
+_DEFS_H_	defs.h	2;"	d
+_FPDEFS_H_	fp_defs.h	2;"	d
+_INSTRUCTION_H_	instruction.h	2;"	d
+_OPERAND_H_	operand.h	2;"	d
+_STOA_H_	stoa.h	2;"	d
+_SYMBOL_H_	symbol.h	2;"	d
+_SYMTABFACADE_H_	symTabFacade.h	2;"	d
+_TOKENIZER_H_	tokenizer.h	2;"	d
+_TOKEN_H_	token.h	2;"	d
+_VECTOR_H_	vector.h	2;"	d
+__anon3::label	bstTest.c	/^        const char* label;$/;"	m	struct:__anon3	file:	access:public
+__anon3::offset	bstTest.c	/^        unsigned short offset;$/;"	m	struct:__anon3	file:	access:public
+__anon3::type	bstTest.c	/^        labelType type;$/;"	m	struct:__anon3	file:	access:public
+__anon4::decString	symbol.c	/^	const char *decString;$/;"	m	struct:__anon4	file:	access:public
+__anon4::type	symbol.c	/^	labelType type;$/;"	m	struct:__anon4	file:	access:public
+__anon5::usint	vector.c	/^	unsigned short usint;$/;"	m	union:__anon5	file:	access:public
+__anon5::vp	vector.c	/^	void *vp;$/;"	m	union:__anon5	file:	access:public
+__anon6::label	symTabFacadeTest.c	/^        const char* label;$/;"	m	struct:__anon6	file:	access:public
+__anon6::offset	symTabFacadeTest.c	/^        unsigned short offset;$/;"	m	struct:__anon6	file:	access:public
+__anon6::type	symTabFacadeTest.c	/^        labelType type;$/;"	m	struct:__anon6	file:	access:public
+__anon8::label	symTabFacadeMock.c	/^    const char* label;$/;"	m	struct:__anon8	file:	access:public
+__anon8::offset	symTabFacadeMock.c	/^    unsigned short offset;$/;"	m	struct:__anon8	file:	access:public
+__anon9::label	vectorTest.c	/^        const char* label;$/;"	m	struct:__anon9	file:	access:public
+__anon9::offset	vectorTest.c	/^        unsigned short offset;$/;"	m	struct:__anon9	file:	access:public
+__anon9::type	vectorTest.c	/^        labelType type;$/;"	m	struct:__anon9	file:	access:public
+actionFunc	fp_defs.h	/^typedef void (*actionFunc)(void *);$/;"	t
+add	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+addDstOp	instruction.c	/^int addDstOp( instruction inst, const char *opString ) {$/;"	f	signature:( instruction inst, const char *opString )
+addDstOp	instruction.h	/^int addDstOp( instruction inst, const char *op );$/;"	p	signature:( instruction inst, const char *op )
+addSrcOp	instruction.c	/^int addSrcOp( instruction inst, const char *opString ) {$/;"	f	signature:( instruction inst, const char *opString )
+addSrcOp	instruction.h	/^int addSrcOp( instruction inst, const char *op );$/;"	p	signature:( instruction inst, const char *op )
+all_tests	bstTest.c	/^static const char *all_tests(  ) {$/;"	f	file:
+all_tests	instructionTest.c	/^static const char *all_tests(  ) {$/;"	f	file:
+all_tests	operandTest.c	/^static const char *all_tests(  ) {$/;"	f	file:
+all_tests	stoaTest.c	/^static const char *all_tests(  ) {$/;"	f	file:
+all_tests	symTabFacadeTest.c	/^static const char *all_tests(  ) {$/;"	f	file:
+all_tests	tokenizerTest.c	/^static const char *all_tests(  ) {$/;"	f	file:
+all_tests	vectorTest.c	/^static const char *all_tests(  ) {$/;"	f	file:
+as	assembler.c	/^	assembler as = malloc( sizeof( *as ) );$/;"	l
+as	main.c	/^    assembler as;$/;"	l
+asmFileExt	assembler.c	/^static const char asmFileExt[] = ".as";$/;"	v	file:
+asmHasError	assembler.c	/^int asmHasError( assembler as ) {$/;"	f	signature:( assembler as )
+asmSetError	assembler.c	/^void asmSetError( assembler as ) {$/;"	f	signature:( assembler as )
+assemble	assembler.c	/^int assemble( assembler as, char *filename ) {$/;"	f	signature:( assembler as, char *filename )
+assemble	assembler.h	/^int assemble( assembler as, char* filename );$/;"	p	signature:( assembler as, char* filename )
+assembler	assembler.h	/^typedef struct assembler_t *assembler;$/;"	t	typeref:struct:assembler_t
+assembler_t	assembler.c	/^struct assembler_t {$/;"	s	file:
+assembler_t::data	assembler.c	/^	vector data;$/;"	m	struct:assembler_t	file:	access:public
+assembler_t::hasError	assembler.c	/^	int hasError;$/;"	m	struct:assembler_t	file:	access:public
+assembler_t::instructions	assembler.c	/^	vector instructions;$/;"	m	struct:assembler_t	file:	access:public
+assembler_t::symTab	assembler.c	/^	symTabFacade symTab;$/;"	m	struct:assembler_t	file:	access:public
+assembler_t::toker	assembler.c	/^	tokenizer toker;$/;"	m	struct:assembler_t	file:	access:public
+bne	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+bstFind	bst.c	/^bstNode bstFind( bstNode n, void *data, cmpFunc cmp ) {$/;"	f	signature:( bstNode n, void *data, cmpFunc cmp )
+bstFind	bst.h	/^bstNode bstFind( bstNode n, void *data, cmpFunc cmp );$/;"	p	signature:( bstNode n, void *data, cmpFunc cmp )
+bstGetData	bst.c	/^void *bstGetData( bstNode n ) {$/;"	f	signature:( bstNode n )
+bstGetData	bst.h	/^void *bstGetData( bstNode n );$/;"	p	signature:( bstNode n )
+bstInOrderWalk	bst.c	/^void bstInOrderWalk( bstNode n, actionFunc fp ) {$/;"	f	signature:( bstNode n, actionFunc fp )
+bstInOrderWalk	bst.h	/^void bstInOrderWalk( bstNode n, actionFunc fp );$/;"	p	signature:( bstNode n, actionFunc fp )
+bstInPostfixWalk	bst.c	/^void bstInPostfixWalk( bstNode n, actionFunc fp ) {$/;"	f	signature:( bstNode n, actionFunc fp )
+bstInPostfixWalk	bst.h	/^void bstInPostfixWalk( bstNode n, actionFunc fp );$/;"	p	signature:( bstNode n, actionFunc fp )
+bstInsert	bst.c	/^int bstInsert( bstNode * rp, void *data, cmpFunc cmp ) {$/;"	f	signature:( bstNode * rp, void *data, cmpFunc cmp )
+bstInsert	bst.h	/^int bstInsert( bstNode *rp, void *data, cmpFunc cmp );$/;"	p	signature:( bstNode *rp, void *data, cmpFunc cmp )
+bstNode	bst.h	/^typedef struct bstNode_t *bstNode;$/;"	t	typeref:struct:bstNode_t
+bstNode_t	bst.c	/^struct bstNode_t {$/;"	s	file:
+bstNode_t::data	bst.c	/^	void *data;$/;"	m	struct:bstNode_t	file:	access:public
+bstNode_t::left	bst.c	/^	struct bstNode_t *left, *right;$/;"	m	struct:bstNode_t	typeref:struct:bstNode_t::bstNode_t	file:	access:public
+bstNode_t::right	bst.c	/^	struct bstNode_t *left, *right;$/;"	m	struct:bstNode_t	typeref:struct:bstNode_t::	file:	access:public
+bstTest_OBJS	makefile	/^bstTest_OBJS := ${bstTest_SRCS:.c=.o}$/;"	m
+bstTest_SRCS	makefile	/^bstTest_SRCS := bstTest.c bst.c symbol.c$/;"	m
+buf	instructionTest.c	/^    char buf[81];$/;"	l
+buf	operandTest.c	/^        char buf[33];$/;"	l
+buf	symTabFacade.c	/^			char buf[16];$/;"	l
+buf	symTabFacade.c	/^			ustoa( getSymOffset( sym ), 12, buf, 16, 4 );$/;"	l
+c	stoa.c	/^	int c, i, j;$/;"	l
+capacity	vector.c	/^	int capacity, size;$/;"	m	struct:vector_t	file:	access:public
+clearAssembler	assembler.c	/^void clearAssembler( assembler as ) {$/;"	f	signature:( assembler as )
+clearSymTabFacade	symTabFacade.c	/^void clearSymTabFacade( symTabFacade stf ) {$/;"	f	signature:( symTabFacade stf )
+clearSymTabFacade	symTabFacade.h	/^void clearSymTabFacade( symTabFacade stf );$/;"	p	signature:( symTabFacade stf )
+clr	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+cmd	instruction.c	/^	const char *cmd;$/;"	m	struct:cmd	file:	access:public
+cmd	instruction.c	/^	unsigned short cmd = 0x0;$/;"	l
+cmd	instruction.c	/^struct cmd {$/;"	s	file:
+cmd::cmd	instruction.c	/^	const char *cmd;$/;"	m	struct:cmd	file:	access:public
+cmd::it	instruction.c	/^	instructionType it;$/;"	m	struct:cmd	file:	access:public
+cmdNotFound	instruction.c	/^	prn, jsr, rts, hlt, cmdNotFound = -1$/;"	e	enum:__anon10	file:
+cmdTab	instruction.c	/^} cmdTab[] = {$/;"	v	typeref:struct:cmd
+cmdValidOpTypes	instruction.c	/^struct cmdValidOpTypes {$/;"	s	file:
+cmdValidOpTypes::dst	instruction.c	/^	unsigned char dst;$/;"	m	struct:cmdValidOpTypes	file:	access:public
+cmdValidOpTypes::src	instruction.c	/^	unsigned char src;$/;"	m	struct:cmdValidOpTypes	file:	access:public
+cmdValidOpTypesTab	instruction.c	/^} cmdValidOpTypesTab[] = {$/;"	v	typeref:struct:cmdValidOpTypes
+cmp	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+cmpFunc	fp_defs.h	/^typedef int (*cmpFunc)(void *, void *);$/;"	t
+cmpSymbols	symbol.c	/^int cmpSymbols( symbol l, symbol r ) {$/;"	f	signature:( symbol l, symbol r )
+cmpSymbols	symbol.h	/^int cmpSymbols( symbol l, symbol r );$/;"	p	signature:( symbol l, symbol r )
+cmpVal	bst.c	/^	int cmpVal;$/;"	l
+dIdx	assembler.c	/^	unsigned short IC = CODE_BASE_ADDRESS, iIdx = 0, dIdx = 0;$/;"	l
+data	assembler.c	/^	vector data;$/;"	m	struct:assembler_t	file:	access:public
+data	bst.c	/^	void *data;$/;"	m	struct:bstNode_t	file:	access:public
+data	operand.c	/^	unsigned short data[2];$/;"	m	struct:operand_t	file:	access:public
+dataSegBase	symTabFacadeTest.c	/^    int i, dataSegBase = 0x5;$/;"	l
+dataSegmentBase	symTabFacade.c	/^	unsigned short dataSegmentBase;$/;"	m	struct:symTabFacade_t	file:	access:public
+dec	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+decLen	tokenizer.c	/^		int decLen = getVarName( &s[i + 1] );$/;"	l
+decString	symbol.c	/^	const char *decString;$/;"	m	struct:__anon4	file:	access:public
+decTab	symbol.c	/^} decTab[] = {$/;"	v	typeref:struct:__anon4	file:
+decType	assembler.c	/^				labelType decType =$/;"	l
+deleteAssembler	assembler.c	/^void deleteAssembler( assembler as ) {$/;"	f	signature:( assembler as )
+deleteAssembler	assembler.h	/^void deleteAssembler( assembler as );$/;"	p	signature:( assembler as )
+deleteBst	bst.c	/^void deleteBst( bstNode n, deleteFunc df ) {$/;"	f	signature:( bstNode n, deleteFunc df )
+deleteBst	bst.h	/^void deleteBst( bstNode n, deleteFunc df );$/;"	p	signature:( bstNode n, deleteFunc df )
+deleteBstNode	bst.c	/^void deleteBstNode( bstNode n, deleteFunc df ) {$/;"	f	signature:( bstNode n, deleteFunc df )
+deleteFunc	fp_defs.h	/^typedef void (*deleteFunc)(void *);$/;"	t
+deleteInstruction	instruction.c	/^void deleteInstruction( instruction inst ) {$/;"	f	signature:( instruction inst )
+deleteInstruction	instruction.h	/^void deleteInstruction( instruction inst );$/;"	p	signature:( instruction inst )
+deleteOp	operand.c	/^void deleteOp( operand op ) {$/;"	f	signature:( operand op )
+deleteOp	operand.h	/^void deleteOp( operand op );$/;"	p	signature:( operand op )
+deleteSymTabFacade	symTabFacade.c	/^void deleteSymTabFacade( symTabFacade stf ) {$/;"	f	signature:( symTabFacade stf )
+deleteSymTabFacade	symTabFacade.h	/^void deleteSymTabFacade( symTabFacade stf );$/;"	p	signature:( symTabFacade stf )
+deleteSymbol	symbol.c	/^void deleteSymbol( symbol sym ) {$/;"	f	signature:( symbol sym )
+deleteSymbol	symbol.h	/^void deleteSymbol( symbol sym );$/;"	p	signature:( symbol sym )
+deleteToken	token.c	/^void deleteToken( token tok ) {$/;"	f	signature:( token tok )
+deleteToken	token.h	/^void deleteToken( token tok );$/;"	p	signature:( token tok )
+deleteTokenizer	tokenizer.c	/^void deleteTokenizer( tokenizer toker ) {$/;"	f	signature:( tokenizer toker )
+deleteTokenizer	tokenizer.h	/^void deleteTokenizer( tokenizer );$/;"	p	signature:( tokenizer )
+deleteVector	vector.c	/^void deleteVector( vector v, deleteFunc df ) {$/;"	f	signature:( vector v, deleteFunc df )
+deleteVector	vector.h	/^void deleteVector( vector v, deleteFunc df );$/;"	p	signature:( vector v, deleteFunc df )
+dp	vector.c	/^	vecData *dp;$/;"	m	struct:vector_t	file:	access:public
+dst	instruction.c	/^	operand src, dst;$/;"	m	struct:instruction_t	file:	access:public
+dst	instruction.c	/^	unsigned char dst;$/;"	m	struct:cmdValidOpTypes	file:	access:public
+entryTab	symTabFacade.c	/^	vector entryTab;$/;"	m	struct:symTabFacade_t	file:	access:public
+externTab	symTabFacade.c	/^	vector externTab;$/;"	m	struct:symTabFacade_t	file:	access:public
+fname	assembler.c	/^	char *fname = fnameBuf;	\/* fname will point to the filename without the extension *\/$/;"	l
+fnameBuf	assembler.c	/^	char fnameBuf[MAX_FILENAME_LEN + ASM_FILE_EXT_LEN];$/;"	l
+fp	symTabFacade.c	/^	FILE *fp;$/;"	l
+getInstSize	instruction.c	/^int getInstSize( instruction inst ) {$/;"	f	signature:( instruction inst )
+getInstSize	instruction.h	/^int getInstSize( instruction inst );$/;"	p	signature:( instruction inst )
+getLabelType	symbol.c	/^labelType getLabelType( const char *label ) {$/;"	f	signature:( const char *label )
+getLabelType	symbol.h	/^labelType getLabelType( const char* label );$/;"	p	signature:( const char* label )
+getNextToken	tokenizer.c	/^token getNextToken( tokenizer toker ) {$/;"	f	signature:( tokenizer toker )
+getNextToken	tokenizer.h	/^token getNextToken( tokenizer );$/;"	p	signature:( tokenizer )
+getNumber	tokenizer.c	/^int getNumber( const char *s ) {$/;"	f	signature:( const char *s )
+getOpRegNum	operand.c	/^int getOpRegNum( operand op ) {$/;"	f	signature:( operand op )
+getOpRegNum	operand.h	/^int getOpRegNum( operand op );$/;"	p	signature:( operand op )
+getOpSize	operand.c	/^int getOpSize( operand op ) {$/;"	f	signature:( operand op )
+getOpSize	operand.h	/^int getOpSize( operand op );$/;"	p	signature:( operand op )
+getOpType	operand.c	/^opType getOpType( operand op ) {$/;"	f	signature:( operand op )
+getOpType	operand.h	/^opType getOpType( operand op );$/;"	p	signature:( operand op )
+getSymLabel	symbol.c	/^char *getSymLabel( symbol sym ) {$/;"	f	signature:( symbol sym )
+getSymLabel	symbol.h	/^char *getSymLabel( symbol sym );$/;"	p	signature:( symbol sym )
+getSymOffset	symTabFacade.c	/^			ustoa( getSymOffset( sym ), 12, buf, 16, 4 );$/;"	p	file:
+getSymOffset	symbol.c	/^unsigned short getSymOffset( symbol sym ) {$/;"	f	signature:( symbol sym )
+getSymOffset	symbol.h	/^unsigned short getSymOffset( symbol sym );$/;"	p	signature:( symbol sym )
+getSymType	symbol.c	/^labelType getSymType( symbol sym ) {$/;"	f	signature:( symbol sym )
+getSymType	symbol.h	/^labelType getSymType( symbol sym );$/;"	p	signature:( symbol sym )
+getTokType	token.c	/^tokenType getTokType( token tok ) {$/;"	f	signature:( token tok )
+getTokType	token.h	/^tokenType getTokType( token tok );$/;"	p	signature:( token tok )
+getTokenString	token.c	/^char *getTokenString( token tok ) {$/;"	f	signature:( token tok )
+getTokenString	token.h	/^char *getTokenString( token tok );$/;"	p	signature:( token tok )
+getVarName	tokenizer.c	/^int getVarName( const char *s ) {$/;"	f	signature:( const char *s )
+hasError	assembler.c	/^	int hasError;$/;"	m	struct:assembler_t	file:	access:public
+hasRelIdx	tokenizer.c	/^			int hasRelIdx = 2;$/;"	l
+hlt	instruction.c	/^	prn, jsr, rts, hlt, cmdNotFound = -1$/;"	e	enum:__anon10	file:
+i	bstTest.c	/^    int i;$/;"	l
+i	instruction.c	/^	int i;$/;"	l
+i	instructionTest.c	/^    int i;$/;"	l
+i	operandTest.c	/^    int i;$/;"	l
+i	stoa.c	/^	int c, i, j;$/;"	l
+i	stoa.c	/^	int i = 0;$/;"	l
+i	symTabFacade.c	/^	int i;$/;"	l
+i	symTabFacadeMock.c	/^    int i;$/;"	l
+i	symTabFacadeTest.c	/^    int i, dataSegBase = 0x5;$/;"	l
+i	symbol.c	/^	int i;$/;"	l
+i	tokenizer.c	/^		int i;$/;"	l
+i	tokenizer.c	/^	int i = 0, spaceCount = 0, textIdx = 0;$/;"	l
+i	tokenizer.c	/^	int i = 0;$/;"	l
+i	tokenizerTest.c	/^    int i ;$/;"	l
+i	tokenizerTest.c	/^    int i = 0;$/;"	l
+i	tokenizerTest.c	/^    int i;$/;"	l
+i	vector.c	/^	int i;$/;"	l
+i	vectorTest.c	/^    int i;$/;"	l
+iIdx	assembler.c	/^	unsigned short IC = CODE_BASE_ADDRESS, iIdx = 0, dIdx = 0;$/;"	l
+ifp	assembler.c	/^	FILE *ifp;$/;"	l
+illegalLabel	tokenizer.c	/^int illegalLabel( const char *s ) {$/;"	f	signature:( const char *s )
+inc	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+indent_SRCS	makefile	/^indent_SRCS := $(program_SRCS)$/;"	m
+ins	assembler.c	/^			instruction ins =$/;"	l
+inst	assembler.c	/^				instruction inst =$/;"	l
+inst	assembler.c	/^			instruction inst =$/;"	l
+inst	instruction.c	/^		instruction inst = malloc( sizeof( *inst ) );$/;"	l
+inst	instructionTest.c	/^        instruction inst = newInstruction( "mov", 0x1 );$/;"	l
+inst	instructionTest.c	/^    instruction inst = newInstruction( "foo", 0xbeef );$/;"	l
+inst	instructionTest.c	/^    instruction inst = newInstruction( "lea", 0x1 );$/;"	l
+inst	instructionTest.c	/^    instruction inst = newInstruction( "mov", 0x1 );$/;"	l
+inst	instructionTest.c	/^    instruction inst = newInstruction( "mov", 0xbeef );$/;"	l
+instLookup	instruction.c	/^int instLookup( const char *cmd ) {$/;"	f	signature:( const char *cmd )
+instOffset	operandTest.c	/^        const unsigned short instOffset = 0x3, opOffset = 0x3;$/;"	l
+instruction	instruction.h	/^typedef struct instruction_t *instruction;$/;"	t	typeref:struct:instruction_t
+instructionTest_OBJS	makefile	/^instructionTest_OBJS := ${instructionTest_SRCS:.c=.o}$/;"	m
+instructionTest_SRCS	makefile	/^instructionTest_SRCS := instructionTest.c instruction.c operand.c stoa.c symTabFacadeMock.c$/;"	m
+instructionType	instruction.c	/^} instructionType;$/;"	t	typeref:enum:__anon10	file:
+instruction_t	instruction.c	/^struct instruction_t {$/;"	s	file:
+instruction_t::dst	instruction.c	/^	operand src, dst;$/;"	m	struct:instruction_t	file:	access:public
+instruction_t::it	instruction.c	/^	instructionType it;$/;"	m	struct:instruction_t	file:	access:public
+instruction_t::offset	instruction.c	/^	unsigned short offset;$/;"	m	struct:instruction_t	file:	access:public
+instruction_t::src	instruction.c	/^	operand src, dst;$/;"	m	struct:instruction_t	file:	access:public
+instructions	assembler.c	/^	vector instructions;$/;"	m	struct:assembler_t	file:	access:public
+it	instruction.c	/^	instructionType it = instLookup( cmd );$/;"	l
+it	instruction.c	/^	instructionType it;$/;"	m	struct:cmd	file:	access:public
+it	instruction.c	/^	instructionType it;$/;"	m	struct:instruction_t	file:	access:public
+j	stoa.c	/^	int c, i, j;$/;"	l
+jmp	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+jsr	instruction.c	/^	prn, jsr, rts, hlt, cmdNotFound = -1$/;"	e	enum:__anon10	file:
+keywords	tokenizer.c	/^		char *keywords[] = {$/;"	l
+label	assembler.c	/^		token tok = NULL, label = NULL;$/;"	l
+label	bstTest.c	/^        const char* label;$/;"	m	struct:__anon3	file:	access:public
+label	symTabFacadeMock.c	/^    const char* label;$/;"	m	struct:__anon8	file:	access:public
+label	symTabFacadeTest.c	/^        const char* label;$/;"	m	struct:__anon6	file:	access:public
+label	symbol.c	/^	char *label;$/;"	m	struct:symbol_t	file:	access:public
+label	vectorTest.c	/^        const char* label;$/;"	m	struct:__anon9	file:	access:public
+labelCode	symbol.h	/^typedef enum { labelError, labelCode, labelData, labelString, labelExtern, labelEntry } labelType;$/;"	e	enum:__anon1
+labelData	symbol.h	/^typedef enum { labelError, labelCode, labelData, labelString, labelExtern, labelEntry } labelType;$/;"	e	enum:__anon1
+labelEntry	symbol.h	/^typedef enum { labelError, labelCode, labelData, labelString, labelExtern, labelEntry } labelType;$/;"	e	enum:__anon1
+labelError	symbol.h	/^typedef enum { labelError, labelCode, labelData, labelString, labelExtern, labelEntry } labelType;$/;"	e	enum:__anon1
+labelExtern	symbol.h	/^typedef enum { labelError, labelCode, labelData, labelString, labelExtern, labelEntry } labelType;$/;"	e	enum:__anon1
+labelRet	operand.c	/^	int labelRet;$/;"	l
+labelString	symbol.h	/^typedef enum { labelError, labelCode, labelData, labelString, labelExtern, labelEntry } labelType;$/;"	e	enum:__anon1
+labelType	symbol.h	/^typedef enum { labelError, labelCode, labelData, labelString, labelExtern, labelEntry } labelType;$/;"	t	typeref:enum:__anon1
+lastTokType	tokenizer.c	/^	tokenType lastTokType;$/;"	m	struct:tokeninzer_t	file:	access:public
+lea	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+left	bst.c	/^	struct bstNode_t *left, *right;$/;"	m	struct:bstNode_t	typeref:struct:bstNode_t::bstNode_t	file:	access:public
+len	assembler.c	/^		int len = strlen( filename );$/;"	l
+len	instruction.c	/^	int len = 0;$/;"	l
+len	operand.c	/^	int len = 0;$/;"	l
+len	tokenizer.c	/^	int len = strlen( s );$/;"	l
+len	tokenizer.c	/^    int len = strlen( line );$/;"	l
+line	assembler.c	/^	char line[INPUT_LINE_SIZE + 1];$/;"	l
+line	tokenizer.c	/^	char *line;$/;"	m	struct:tokeninzer_t	file:	access:public
+line	tokenizerTest.c	/^    char *line = " ; Hello There!\\n";$/;"	l
+line	tokenizerTest.c	/^    char *line = " codeLabel1: movr[*j1],r1\\n";$/;"	l
+line	tokenizerTest.c	/^    char *line = ".data +123,  -456, 789 \\n";$/;"	l
+line	tokenizerTest.c	/^    char *line = "; Hello There!\\n";$/;"	l
+line	tokenizerTest.c	/^    char *line = "\\t   \\t\\n";$/;"	l
+line	tokenizerTest.c	/^    char *line = "codeLabel1: hlt \\n";$/;"	l
+line	tokenizerTest.c	/^    char *line = "codeLabel1: mov r[*j1],r1\\n";$/;"	l
+line	tokenizerTest.c	/^    char *line = "codeLabel1: movr[*j1],r1\\n";$/;"	l
+line	tokenizerTest.c	/^    char *line[] = { $/;"	l
+line	tokenizerTest.c	/^    char *line[] = {$/;"	l
+lineIdx	tokenizer.c	/^	int lineIdx, lineLen;$/;"	m	struct:tokeninzer_t	file:	access:public
+lineLen	tokenizer.c	/^	int lineIdx, lineLen;$/;"	m	struct:tokeninzer_t	file:	access:public
+main	bstTest.c	/^int main( void ) {$/;"	f	signature:( void )
+main	instructionTest.c	/^int main( void ) {$/;"	f	signature:( void )
+main	main.c	/^int main( int argc, char *argv[] ) {$/;"	f	signature:( int argc, char *argv[] )
+main	operandTest.c	/^int main( void ) {$/;"	f	signature:( void )
+main	stoaTest.c	/^int main( void ) {$/;"	f	signature:( void )
+main	symTabFacadeTest.c	/^int main( void ) {$/;"	f	signature:( void )
+main	tokenizerTest.c	/^int main( void ) {$/;"	f	signature:( void )
+main	vectorTest.c	/^int main( void ) {$/;"	f	signature:( void )
+mov	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+mu_assert	minunit.h	5;"	d
+mu_run_test	minunit.h	7;"	d
+n	bst.c	/^	bstNode n;$/;"	l
+n	symTabFacade.c	/^		bstNode n = bstFind( stf->symTab, sym, ( cmpFunc ) cmpSymbols );$/;"	l
+n	symTabFacade.c	/^	bstNode n = bstFind( stf->symTab, sym, ( cmpFunc ) cmpSymbols );$/;"	l
+nNew	bst.c	/^		bstNode nNew = newBstNode( data );$/;"	l
+newAssembler	assembler.c	/^assembler newAssembler(  ) {$/;"	f
+newAssembler	assembler.h	/^assembler newAssembler();$/;"	p	signature:()
+newBstNode	bst.c	/^bstNode newBstNode( void *data ) {$/;"	f	signature:( void *data )
+newInstruction	instruction.c	/^instruction newInstruction( const char *cmd, unsigned short IC ) {$/;"	f	signature:( const char *cmd, unsigned short IC )
+newInstruction	instruction.h	/^instruction newInstruction( const char* cmd, unsigned short IC );$/;"	p	signature:( const char* cmd, unsigned short IC )
+newOp	operand.c	/^operand newOp( const char *opString ) {$/;"	f	signature:( const char *opString )
+newOp	operand.h	/^operand newOp( const char *opString );$/;"	p	signature:( const char *opString )
+newSymTabFacade	symTabFacade.c	/^symTabFacade newSymTabFacade(  ) {$/;"	f
+newSymTabFacade	symTabFacade.h	/^symTabFacade newSymTabFacade( void );$/;"	p	signature:( void )
+newSymbol	symbol.c	/^symbol newSymbol( const char *label, labelType type, unsigned short offset ) {$/;"	f	signature:( const char *label, labelType type, unsigned short offset )
+newSymbol	symbol.h	/^symbol newSymbol( const char* label, labelType type, unsigned short offset );$/;"	p	signature:( const char* label, labelType type, unsigned short offset )
+newToken	token.c	/^token newToken( char *text, tokenType type ) {$/;"	f	signature:( char *text, tokenType type )
+newToken	token.h	/^token newToken( char *text, tokenType type );$/;"	p	signature:( char *text, tokenType type )
+newTokenizer	tokenizer.c	/^tokenizer newTokenizer( void ) {$/;"	f	signature:( void )
+newTokenizer	tokenizer.h	/^tokenizer newTokenizer( void );$/;"	p	signature:( void )
+newVector	vector.c	/^vector newVector( int initialSize ) {$/;"	f	signature:( int initialSize )
+newVector	vector.h	/^vector newVector( int initialSize );$/;"	p	signature:( int initialSize )
+not	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+notValidDstOpType	instruction.c	/^static int notValidDstOpType( instruction inst, opType type ) {$/;"	f	file:	signature:( instruction inst, opType type )
+notValidSrcOpType	instruction.c	/^static int notValidSrcOpType( instruction inst, opType type ) {$/;"	f	file:	signature:( instruction inst, opType type )
+num	operand.c	/^	short num;		\/* this could be the register number or literal value *\/$/;"	m	struct:operand_t	file:	access:public
+num	stoaTest.c	/^    short num = 0;$/;"	l
+num	stoaTest.c	/^    unsigned short num = 0;$/;"	l
+numLen	tokenizer.c	/^			int numLen = getNumber( &s[++i] );$/;"	l
+obFileName	assembler.c	/^		char obFileName[MAX_FILENAME_LEN + 4];$/;"	l
+obfp	assembler.c	/^		FILE *obfp;$/;"	l
+offset	bstTest.c	/^        unsigned short offset;$/;"	m	struct:__anon3	file:	access:public
+offset	instruction.c	/^	unsigned short offset;$/;"	m	struct:instruction_t	file:	access:public
+offset	symTabFacadeMock.c	/^    unsigned short offset;$/;"	m	struct:__anon8	file:	access:public
+offset	symTabFacadeTest.c	/^        int offset = stfGetLabelAddress( stf, syms[i].label, (unsigned short)i+1 );$/;"	l
+offset	symTabFacadeTest.c	/^        unsigned short offset;$/;"	m	struct:__anon6	file:	access:public
+offset	symbol.c	/^	unsigned short offset;$/;"	m	struct:symbol_t	file:	access:public
+offset	vectorTest.c	/^        unsigned short offset;$/;"	m	struct:__anon9	file:	access:public
+op	instruction.c	/^	operand op = newOp( opString );$/;"	l
+op	operand.c	/^	operand op = malloc( sizeof( *op ) );$/;"	l
+op	operandTest.c	/^        operand op;$/;"	l
+opOffset	operandTest.c	/^        const unsigned short instOffset = 0x3, opOffset = 0x3;$/;"	l
+opType	operand.h	/^typedef enum { OpLiteral = 0, OpDirect, OpRelative, Op2D, OpRegister, OpError = -1 } opType ;$/;"	t	typeref:enum:__anon2
+operand	operand.h	/^typedef struct operand_t *operand;$/;"	t	typeref:struct:operand_t
+operandTest_OBJS	makefile	/^operandTest_OBJS := ${operandTest_SRCS:.c=.o}$/;"	m
+operandTest_SRCS	makefile	/^operandTest_SRCS := operandTest.c operand.c stoa.c symTabFacadeMock.c$/;"	m
+operand_t	operand.c	/^struct operand_t {$/;"	s	file:
+operand_t::data	operand.c	/^	unsigned short data[2];$/;"	m	struct:operand_t	file:	access:public
+operand_t::num	operand.c	/^	short num;		\/* this could be the register number or literal value *\/$/;"	m	struct:operand_t	file:	access:public
+operand_t::type	operand.c	/^	opType type;$/;"	m	struct:operand_t	file:	access:public
+operand_t::var1	operand.c	/^	char *var1, *var2;$/;"	m	struct:operand_t	file:	access:public
+operand_t::var2	operand.c	/^	char *var1, *var2;$/;"	m	struct:operand_t	file:	access:public
+ops	instructionTest.c	/^    char *ops[] = {$/;"	l
+ops	operandTest.c	/^    char *ops[] = {$/;"	l
+outfileName	symTabFacade.c	/^	char outfileName[MAX_FILENAME_LEN + 1];$/;"	l
+output	stoaTest.c	/^    char output[16];$/;"	l
+output	stoaTest.c	/^    char output[17];$/;"	l
+outputIdx	assembler.c	/^		int outputIdx = 0;$/;"	l
+outputLine	assembler.c	/^		char outputLine[MAX_OUTPUT_LINE_LEN + 1];$/;"	l
+parseLine	tokenizer.c	/^void parseLine( tokenizer toker, char *line ) {$/;"	f	signature:( tokenizer toker, char *line )
+parseLine	tokenizer.h	/^void parseLine( tokenizer toker, char* line );$/;"	p	signature:( tokenizer toker, char* line )
+printInstruction	instruction.c	/^int printInstruction( instruction inst, char *buf ) {$/;"	f	signature:( instruction inst, char *buf )
+printInstruction	instruction.h	/^int printInstruction( instruction inst, char *outputBuffer );$/;"	p	signature:( instruction inst, char *outputBuffer )
+printOp	operand.c	/^int printOp( operand op, char *buf, unsigned short offset ) {$/;"	f	signature:( operand op, char *buf, unsigned short offset )
+printOp	operand.h	/^int printOp( operand op, char *buf, unsigned short offset);$/;"	p	signature:( operand op, char *buf, unsigned short offset)
+prn	instruction.c	/^	prn, jsr, rts, hlt, cmdNotFound = -1$/;"	e	enum:__anon10	file:
+program_NAME	makefile	/^program_NAME := assembler$/;"	m
+program_OBJS	makefile	/^program_OBJS := ${program_SRCS:.c=.o}$/;"	m
+program_SRCS	makefile	/^program_SRCS := assembler.c instruction.c main.c operand.c stoa.c symbol.c bst.c symTabFacade.c token.c tokenizer.c \\$/;"	m
+red	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+resolveInstruction	instruction.c	/^int resolveInstruction( instruction inst, symTabFacade stf ) {$/;"	f	signature:( instruction inst, symTabFacade stf )
+resolveInstruction	instruction.h	/^int resolveInstruction( instruction inst, symTabFacade stf );$/;"	p	signature:( instruction inst, symTabFacade stf )
+resolveOp	operand.c	/^int resolveOp( operand op, symTabFacade stf, unsigned short instOffset,$/;"	f	signature:( operand op, symTabFacade stf, unsigned short instOffset, unsigned short opOffset )
+resolveOp	operand.h	/^int resolveOp( operand op, symTabFacade stf, unsigned short instOffset, unsigned short opOffset );$/;"	p	signature:( operand op, symTabFacade stf, unsigned short instOffset, unsigned short opOffset )
+result	bstTest.c	/^	const char *result = all_tests(  );$/;"	l
+result	instructionTest.c	/^    char *result = "0001 00000022 A\\n0002 00031B13 A\\n0003 0000000A R\\n0004 00000009 R\\n";$/;"	l
+result	instructionTest.c	/^    const char *result;$/;"	l
+result	operandTest.c	/^    const char *result;$/;"	l
+result	stoaTest.c	/^	const char *result = all_tests(  );$/;"	l
+result	stoaTest.c	/^    char *result;$/;"	l
+result	symTabFacadeTest.c	/^	const char *result = all_tests(  );$/;"	l
+result	tokenizerTest.c	/^    const char *result;$/;"	l
+result	vectorTest.c	/^	const char *result = all_tests(  );$/;"	l
+results	operandTest.c	/^    const char* results[] = {$/;"	l
+ret	main.c	/^		int ret;$/;"	l
+reverse	stoa.c	/^static void reverse( char s[] ) {$/;"	f	file:	signature:( char s[] )
+right	bst.c	/^	struct bstNode_t *left, *right;$/;"	m	struct:bstNode_t	typeref:struct:bstNode_t::	file:	access:public
+root	bstTest.c	/^    bstNode root = NULL;$/;"	l
+rts	instruction.c	/^	prn, jsr, rts, hlt, cmdNotFound = -1$/;"	e	enum:__anon10	file:
+s	assembler.c	/^						char *s = getTokenString( tok );$/;"	l
+s	tokenizer.c	/^	char *s = &toker->line[toker->lineIdx];$/;"	l
+setSymOffset	symbol.c	/^void setSymOffset( symbol sym, unsigned short offset ) {$/;"	f	signature:( symbol sym, unsigned short offset )
+setSymOffset	symbol.h	/^void setSymOffset( symbol sym, unsigned short offset );$/;"	p	signature:( symbol sym, unsigned short offset )
+size	vector.c	/^	int capacity, size;$/;"	m	struct:vector_t	file:	access:public
+skipWhiteSpace	tokenizer.c	/^int skipWhiteSpace( char *s ) {$/;"	f	signature:( char *s )
+spaceCount	tokenizer.c	/^	int i = 0, spaceCount = 0, textIdx = 0;$/;"	l
+src	assembler.c	/^				token src;$/;"	l
+src	instruction.c	/^	operand src, dst;$/;"	m	struct:instruction_t	file:	access:public
+src	instruction.c	/^	unsigned char src;$/;"	m	struct:cmdValidOpTypes	file:	access:public
+sstoa	stoa.c	/^int sstoa( short n, int base, char s[], int size, int minWidth ) {$/;"	f	signature:( short n, int base, char s[], int size, int minWidth )
+sstoa	stoa.h	/^int sstoa( short n, int base, char s[] , int size, int minWidth);$/;"	p	signature:( short n, int base, char s[] , int size, int minWidth)
+stf	instructionTest.c	/^    symTabFacade stf = NULL;$/;"	l
+stf	operandTest.c	/^    symTabFacade stf = NULL;$/;"	l
+stf	symTabFacade.c	/^	symTabFacade stf = malloc( sizeof( *stf ) );$/;"	l
+stf	symTabFacadeTest.c	/^    symTabFacade stf = newSymTabFacade();$/;"	l
+stfAddLabel	symTabFacade.c	/^int stfAddLabel( symTabFacade stf, const char *label, labelType labType,$/;"	f	signature:( symTabFacade stf, const char *label, labelType labType, unsigned short offset )
+stfAddLabel	symTabFacade.h	/^int stfAddLabel( symTabFacade stf, const char* label, labelType labType, unsigned short offset );$/;"	p	signature:( symTabFacade stf, const char* label, labelType labType, unsigned short offset )
+stfDump	symTabFacade.c	/^int stfDump( symTabFacade stf, const char *fname ) {$/;"	f	signature:( symTabFacade stf, const char *fname )
+stfDump	symTabFacade.h	/^int stfDump( symTabFacade stf, const char *fname );$/;"	p	signature:( symTabFacade stf, const char *fname )
+stfGetLabelAddress	symTabFacade.c	/^int stfGetLabelAddress( symTabFacade stf, const char *label,$/;"	f	signature:( symTabFacade stf, const char *label, unsigned short offset )
+stfGetLabelAddress	symTabFacade.h	/^int stfGetLabelAddress( symTabFacade stf, const char *label, unsigned short offset );$/;"	p	signature:( symTabFacade stf, const char *label, unsigned short offset )
+stfGetLabelAddress	symTabFacadeMock.c	/^int stfGetLabelAddress( symTabFacade stf, const char *label, unsigned short offset ) {$/;"	f	signature:( symTabFacade stf, const char *label, unsigned short offset )
+stfSetDataSegmentBase	symTabFacade.c	/^void stfSetDataSegmentBase( symTabFacade stf, unsigned short base ) {$/;"	f	signature:( symTabFacade stf, unsigned short base )
+stfSetDataSegmentBase	symTabFacade.h	/^void stfSetDataSegmentBase( symTabFacade stf, unsigned short );$/;"	p	signature:( symTabFacade stf, unsigned short )
+stoaTest_OBJS	makefile	/^stoaTest_OBJS := ${stoaTest_SRCS:.c=.o}$/;"	m
+stoaTest_SRCS	makefile	/^stoaTest_SRCS := stoaTest.c stoa.c$/;"	m
+sub	instruction.c	/^	mov = 0, cmp, add, sub, not, clr, lea, inc, dec, jmp, bne, red,$/;"	e	enum:__anon10	file:
+sym	bstTest.c	/^    symbol sym;$/;"	l
+sym	symTabFacade.c	/^			symbol sym = vecGetObject( stf->entryTab, i );$/;"	l
+sym	symTabFacade.c	/^			symbol sym = vecGetObject( stf->externTab, i );$/;"	l
+sym	symTabFacade.c	/^		symbol sym = vecGetObject( stf->entryTab, i );$/;"	l
+sym	symTabFacade.c	/^	symbol sym = newSymbol( label, labelData, 0 );$/;"	l
+sym	symbol.c	/^	symbol sym = malloc( sizeof( *sym ) );$/;"	l
+symTab	assembler.c	/^	symTabFacade symTab;$/;"	m	struct:assembler_t	file:	access:public
+symTab	symTabFacade.c	/^	bstNode symTab;$/;"	m	struct:symTabFacade_t	file:	access:public
+symTab	symTabFacadeMock.c	/^} symTab[] = {$/;"	v	typeref:struct:__anon8	file:
+symTabFacade	symTabFacade.h	/^typedef struct symTabFacade_t *symTabFacade;$/;"	t	typeref:struct:symTabFacade_t
+symTabFacadeTest_OBJS	makefile	/^symTabFacadeTest_OBJS := ${symTabFacadeTest_SRCS:.c=.o}$/;"	m
+symTabFacadeTest_SRCS	makefile	/^symTabFacadeTest_SRCS := symTabFacadeTest.c symTabFacade.c symbol.c vector.c bst.c$/;"	m
+symTabFacade_t	symTabFacade.c	/^struct symTabFacade_t {$/;"	s	file:
+symTabFacade_t::dataSegmentBase	symTabFacade.c	/^	unsigned short dataSegmentBase;$/;"	m	struct:symTabFacade_t	file:	access:public
+symTabFacade_t::entryTab	symTabFacade.c	/^	vector entryTab;$/;"	m	struct:symTabFacade_t	file:	access:public
+symTabFacade_t::externTab	symTabFacade.c	/^	vector externTab;$/;"	m	struct:symTabFacade_t	file:	access:public
+symTabFacade_t::symTab	symTabFacade.c	/^	bstNode symTab;$/;"	m	struct:symTabFacade_t	file:	access:public
+symbol	symbol.h	/^typedef struct symbol_t *symbol;$/;"	t	typeref:struct:symbol_t
+symbol_t	symbol.c	/^struct symbol_t {$/;"	s	file:
+symbol_t::label	symbol.c	/^	char *label;$/;"	m	struct:symbol_t	file:	access:public
+symbol_t::offset	symbol.c	/^	unsigned short offset;$/;"	m	struct:symbol_t	file:	access:public
+symbol_t::type	symbol.c	/^	labelType type;$/;"	m	struct:symbol_t	file:	access:public
+syms	bstTest.c	/^    } syms[] = {$/;"	l
+syms	symTabFacadeTest.c	/^    } syms[] = {$/;"	l
+syms	vectorTest.c	/^    } syms[] = {$/;"	l
+temp	stoa.c	/^		unsigned short temp;$/;"	l
+test_blankline	tokenizerTest.c	/^static const char *test_blankline(  ) {$/;"	f	file:
+test_bst	bstTest.c	/^static const char *test_bst(  ) {$/;"	f	file:
+test_comment	tokenizerTest.c	/^static const char *test_comment(  ) {$/;"	f	file:
+test_data_no_start_label	tokenizerTest.c	/^static const char *test_data_no_start_label(  ) {$/;"	f	file:
+test_extern_entry_no_start_label	tokenizerTest.c	/^static const char *test_extern_entry_no_start_label(  ) {$/;"	f	file:
+test_getInst	instructionTest.c	/^static const char *test_getInst(  ) {$/;"	f	file:
+test_inst_resolveInst_printInst	instructionTest.c	/^static const char *test_inst_resolveInst_printInst(  ) {$/;"	f	file:
+test_instruction_no_label_invalid_first_arguement	tokenizerTest.c	/^static const char *test_instruction_no_label_invalid_first_arguement(  ) {$/;"	f	file:
+test_instruction_no_label_one_arg	tokenizerTest.c	/^static const char *test_instruction_no_label_one_arg(  ) {$/;"	f	file:
+test_instruction_no_label_two_args	tokenizerTest.c	/^static const char *test_instruction_no_label_two_args(  ) {$/;"	f	file:
+test_instruction_with_invalid_label_zero_args	tokenizerTest.c	/^static const char *test_instruction_with_invalid_label_zero_args(  ) {$/;"	f	file:
+test_instruction_with_label_two_args	tokenizerTest.c	/^static const char *test_instruction_with_label_two_args(  ) {$/;"	f	file:
+test_instruction_with_label_zero_args	tokenizerTest.c	/^static const char *test_instruction_with_label_zero_args(  ) {$/;"	f	file:
+test_invalid_comment	tokenizerTest.c	/^static const char *test_invalid_comment(  ) {$/;"	f	file:
+test_invalid_instruction_with_label_missing_space	tokenizerTest.c	/^static const char *test_invalid_instruction_with_label_missing_space(  ) {$/;"	f	file:
+test_invalid_label_not_in_first_col	tokenizerTest.c	/^static const char *test_invalid_label_not_in_first_col(  ) {$/;"	f	file:
+test_lea_addSrcOp_addDstOp_invalid_opType	instructionTest.c	/^static const char *test_lea_addSrcOp_addDstOp_invalid_opType(  ) {$/;"	f	file:
+test_mov_addSrcOp_addDstOp	instructionTest.c	/^static const char *test_mov_addSrcOp_addDstOp(  ) {$/;"	f	file:
+test_newInstruction_invalid_instruction	instructionTest.c	/^static const char *test_newInstruction_invalid_instruction(  ) {$/;"	f	file:
+test_newInstruction_valid_instruction	instructionTest.c	/^static const char *test_newInstruction_valid_instruction(  ) {$/;"	f	file:
+test_newOp	operandTest.c	/^static const char *test_newOp(  ) {$/;"	f	file:
+test_resolveOp_printOp	operandTest.c	/^static const char *test_resolveOp_printOp(  ) {$/;"	f	file:
+test_sstoa	stoaTest.c	/^static const char *test_sstoa(  ) {$/;"	f	file:
+test_stf	symTabFacadeTest.c	/^static const char *test_stf(  ) {$/;"	f	file:
+test_string_no_start_label	tokenizerTest.c	/^static const char *test_string_no_start_label(  ) {$/;"	f	file:
+test_string_with_start_label	tokenizerTest.c	/^static const char *test_string_with_start_label(  ) {$/;"	f	file:
+test_ustoa	stoaTest.c	/^static const char *test_ustoa(  ) {$/;"	f	file:
+test_vector	vectorTest.c	/^static const char *test_vector(  ) {$/;"	f	file:
+tests_run	bstTest.c	/^int tests_run = 0;$/;"	v
+tests_run	instructionTest.c	/^int tests_run = 0;$/;"	v
+tests_run	operandTest.c	/^int tests_run = 0;$/;"	v
+tests_run	stoaTest.c	/^int tests_run = 0;$/;"	v
+tests_run	symTabFacadeTest.c	/^int tests_run = 0;$/;"	v
+tests_run	tokenizerTest.c	/^int tests_run = 0;$/;"	v
+tests_run	vectorTest.c	/^int tests_run = 0;$/;"	v
+text	token.c	/^	char *text;$/;"	m	struct:token_t	file:	access:public
+text	tokenizer.c	/^	char text[INPUT_LINE_SIZE + 1];$/;"	l
+textIdx	tokenizer.c	/^	int i = 0, spaceCount = 0, textIdx = 0;$/;"	l
+tok	assembler.c	/^		token tok = NULL, label = NULL;$/;"	l
+tok	token.c	/^	token tok = malloc( sizeof( *tok ) );$/;"	l
+tok	tokenizerTest.c	/^static token tok;$/;"	v	file:
+tokCmd	token.h	/^typedef enum { tokLabel, tokCmd, tokOp, tokDec, tokNL, tokError, tokNum, tokString } tokenType ;$/;"	e	enum:__anon7
+tokDec	token.h	/^typedef enum { tokLabel, tokCmd, tokOp, tokDec, tokNL, tokError, tokNum, tokString } tokenType ;$/;"	e	enum:__anon7
+tokError	token.h	/^typedef enum { tokLabel, tokCmd, tokOp, tokDec, tokNL, tokError, tokNum, tokString } tokenType ;$/;"	e	enum:__anon7
+tokLabel	token.h	/^typedef enum { tokLabel, tokCmd, tokOp, tokDec, tokNL, tokError, tokNum, tokString } tokenType ;$/;"	e	enum:__anon7
+tokNL	token.h	/^typedef enum { tokLabel, tokCmd, tokOp, tokDec, tokNL, tokError, tokNum, tokString } tokenType ;$/;"	e	enum:__anon7
+tokNum	token.h	/^typedef enum { tokLabel, tokCmd, tokOp, tokDec, tokNL, tokError, tokNum, tokString } tokenType ;$/;"	e	enum:__anon7
+tokOp	token.h	/^typedef enum { tokLabel, tokCmd, tokOp, tokDec, tokNL, tokError, tokNum, tokString } tokenType ;$/;"	e	enum:__anon7
+tokString	token.h	/^typedef enum { tokLabel, tokCmd, tokOp, tokDec, tokNL, tokError, tokNum, tokString } tokenType ;$/;"	e	enum:__anon7
+tokType	assembler.c	/^		tokenType tokType;$/;"	l
+token	token.h	/^typedef struct token_t *token;$/;"	t	typeref:struct:token_t
+tokenType	token.h	/^typedef enum { tokLabel, tokCmd, tokOp, tokDec, tokNL, tokError, tokNum, tokString } tokenType ;$/;"	t	typeref:enum:__anon7
+token_t	token.c	/^struct token_t {$/;"	s	file:
+token_t::text	token.c	/^	char *text;$/;"	m	struct:token_t	file:	access:public
+token_t::type	token.c	/^	tokenType type;$/;"	m	struct:token_t	file:	access:public
+tokeninzer_t	tokenizer.c	/^struct tokeninzer_t {$/;"	s	file:
+tokeninzer_t::lastTokType	tokenizer.c	/^	tokenType lastTokType;$/;"	m	struct:tokeninzer_t	file:	access:public
+tokeninzer_t::line	tokenizer.c	/^	char *line;$/;"	m	struct:tokeninzer_t	file:	access:public
+tokeninzer_t::lineIdx	tokenizer.c	/^	int lineIdx, lineLen;$/;"	m	struct:tokeninzer_t	file:	access:public
+tokeninzer_t::lineLen	tokenizer.c	/^	int lineIdx, lineLen;$/;"	m	struct:tokeninzer_t	file:	access:public
+tokenizer	tokenizer.h	/^typedef struct tokeninzer_t *tokenizer;$/;"	t	typeref:struct:tokeninzer_t
+tokenizerTest_OBJS	makefile	/^tokenizerTest_OBJS := ${tokenizerTest_SRCS:.c=.o}$/;"	m
+tokenizerTest_SRCS	makefile	/^tokenizerTest_SRCS := tokenizerTest.c tokenizer.c token.c$/;"	m
+toker	assembler.c	/^	tokenizer toker;$/;"	m	struct:assembler_t	file:	access:public
+toker	tokenizer.c	/^	tokenizer toker = malloc( sizeof( *toker ) );$/;"	l
+toker	tokenizerTest.c	/^static tokenizer toker;$/;"	v	file:
+type	bstTest.c	/^        labelType type;$/;"	m	struct:__anon3	file:	access:public
+type	operand.c	/^	opType type;$/;"	m	struct:operand_t	file:	access:public
+type	operandTest.c	/^        opType type;$/;"	l
+type	symTabFacade.c	/^		labelType type = getSymType( sym );$/;"	l
+type	symTabFacadeTest.c	/^        labelType type;$/;"	m	struct:__anon6	file:	access:public
+type	symbol.c	/^	labelType type;$/;"	m	struct:__anon4	file:	access:public
+type	symbol.c	/^	labelType type;$/;"	m	struct:symbol_t	file:	access:public
+type	token.c	/^	tokenType type;$/;"	m	struct:token_t	file:	access:public
+type	vectorTest.c	/^        labelType type;$/;"	m	struct:__anon9	file:	access:public
+u	stoa.c	/^	unsigned short u;$/;"	l
+usint	vector.c	/^	unsigned short usint;$/;"	m	union:__anon5	file:	access:public
+ustoa	stoa.c	/^int ustoa( unsigned short n, int base, char s[], int size, int minWidth ) {$/;"	f	signature:( unsigned short n, int base, char s[], int size, int minWidth )
+ustoa	stoa.h	/^int ustoa( unsigned short n, int base, char s[] , int size, int minWidth);$/;"	p	signature:( unsigned short n, int base, char s[] , int size, int minWidth)
+var1	operand.c	/^	char *var1, *var2;$/;"	m	struct:operand_t	file:	access:public
+var2	operand.c	/^	char *var1, *var2;$/;"	m	struct:operand_t	file:	access:public
+varLen	tokenizer.c	/^		int varLen = getVarName( &s[i] );$/;"	l
+varLen1	tokenizer.c	/^		int varLen1, varLen2;$/;"	l
+varLen2	tokenizer.c	/^		int varLen1, varLen2;$/;"	l
+vec	vector.c	/^	vector vec = malloc( sizeof( *vec ) );$/;"	l
+vec	vectorTest.c	/^    vector vec = newVector( 1 );$/;"	l
+vecAppendObject	vector.c	/^int vecAppendObject( vector v, void *ob ) {$/;"	f	signature:( vector v, void *ob )
+vecAppendObject	vector.h	/^int vecAppendObject( vector v, void *ob );$/;"	p	signature:( vector v, void *ob )
+vecAppendUS	vector.c	/^int vecAppendUS( vector v, unsigned short data ) {$/;"	f	signature:( vector v, unsigned short data )
+vecAppendUS	vector.h	/^int vecAppendUS( vector v, unsigned short data );$/;"	p	signature:( vector v, unsigned short data )
+vecData	vector.c	/^} vecData;$/;"	t	typeref:union:__anon5	file:
+vecGetObject	vector.c	/^void *vecGetObject( vector v, int index ) {$/;"	f	signature:( vector v, int index )
+vecGetObject	vector.h	/^void *vecGetObject( vector v, int index );$/;"	p	signature:( vector v, int index )
+vecGetSize	vector.c	/^int vecGetSize( vector v ) {$/;"	f	signature:( vector v )
+vecGetSize	vector.h	/^int vecGetSize( vector v );$/;"	p	signature:( vector v )
+vecGetUS	vector.c	/^unsigned short vecGetUS( vector v, int index ) {$/;"	f	signature:( vector v, int index )
+vecGetUS	vector.h	/^unsigned short vecGetUS( vector v, int index );$/;"	p	signature:( vector v, int index )
+vector	vector.h	/^typedef struct vector_t *vector;$/;"	t	typeref:struct:vector_t
+vectorClear	vector.c	/^void vectorClear( vector v, deleteFunc df ) {$/;"	f	signature:( vector v, deleteFunc df )
+vectorClear	vector.h	/^void vectorClear( vector v, deleteFunc df );$/;"	p	signature:( vector v, deleteFunc df )
+vectorTest_OBJS	makefile	/^vectorTest_OBJS := ${vectorTest_SRCS:.c=.o}$/;"	m
+vectorTest_SRCS	makefile	/^vectorTest_SRCS := vectorTest.c vector.c symbol.c$/;"	m
+vector_t	vector.c	/^struct vector_t {$/;"	s	file:
+vector_t::capacity	vector.c	/^	int capacity, size;$/;"	m	struct:vector_t	file:	access:public
+vector_t::dp	vector.c	/^	vecData *dp;$/;"	m	struct:vector_t	file:	access:public
+vector_t::size	vector.c	/^	int capacity, size;$/;"	m	struct:vector_t	file:	access:public
+vp	vector.c	/^	void *vp;$/;"	m	union:__anon5	file:	access:public

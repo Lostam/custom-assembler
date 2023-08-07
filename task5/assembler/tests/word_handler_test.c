@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 char *to_binary(unsigned int num, unsigned int length) {
    char* binary = (char*)malloc((length+1) * sizeof(char));
     if (binary == NULL) {
-        printf("Memory allocation failed!\n");
+        error("Memory allocation failed!");
         exit(1);
     }
 

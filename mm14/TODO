@@ -1,0 +1,9 @@
+General TODO list:
+
+make all internal helper functions static
+
+assembler.c:26:/* TODO Get rid of any remaining magic numbers */
+assembler.c:64:/* TODO This function is just way too big, need to break it up */
+tokenizer.c:95:	/* TODO This should be the responsibility of a funtion exported by the
+tokenizer.c:126:/* TODO Make all internal functions static */
+tokenizer.c:127:/* TODO this function is too long, should break it up into subroutines */

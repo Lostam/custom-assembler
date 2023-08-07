@@ -30,44 +30,77 @@ enum operand_type_s {
 #include "assembler.h"
 #include <string.h>
 
-// todo :: change to capital letters
-enum op_adrs_mod_s { Immediate = 1, // a number
-                     Direct = 3, // a label
-                     Register = 5, // a register (r@[0-7])
-                     Undefined = 0 };
+enum op_adrs_mod_s { IMMEDIATE_MODE = 1, // a number
+                     DIRECT_MODE = 3, // a label
+                     REGISTER_MODE = 5, // a register (r@[0-7])
+                     UNDEFINED_MODE = 0 };
 
 enum op_adrs_pos_s { SOURCE,
                      DESTINATION };
 
 struct operand_s {
-    const char *value;
-    OpAddressMode type;
-    OpAddressPosition pos;
+    char *value; /**< The operand content */
+    OpAddressMode type; /**< The type of the opernad, immediate,direct or register */
+    OpAddressPosition pos; /**< either a source or destination */
 };
 
 
+/**
+ * @brief key-value mapping of string value to operation enum
+*/
 struct operand_map_s {
-    const char *str;
-    OperationType op;
+    char *str; 
+    OperationType op; 
 };
 
+/**
+ * @brief key-value mapping of an operation enum to it allowed operands
+*/
 struct op_allowed_opr_s {
     OperationType op;
     OpAddressMode source[3];
     OpAddressMode destination[3];
 };
 
+/**
+    Converts a string to an enum 
+*/
 OperationType string_to_operation(const char *);
+/**
+    @brief Converts an enum to string, used for logging
+*/
 const char *operation_to_string(OperationType);
-// Operand *new_operand(const char *, OpAddressPosition); // todo :: add
-Operand *new_empty_operand(OpAddressPosition);
+/**
+    @brief Converts an enum to string, used for logging
+*/
+const char *operation_mode_to_string(OpAddressMode);
+/**
+    @brief Builds and adds the operand to the passed operand 
+*/
 void add_operand_values(Operand *, const char *);
-int is_valid_operation_name(const char *);
-void validate_operands(Assembler *, OperationType, Operand *);
-int is_address_in_array(OpAddressMode[], OpAddressMode);
+/**
+    @brief Returns the number of operands an operation supports
+*/
 int get_operands_number(OperationType);
+/**
+    @brief Returns an array of allowed source and destination operands for an operation
+*/
+OperationAllowdOperands *get_allowed_operand(OperationType);
+int is_valid_operation_name(const char *);
+/**
+    @brief Validates an operand is valid
+*/
+void validate_operands(Assembler *, OperationType, Operand *);
+/**
+    @brief Check if an operand is a valid operand for the operation
+*/
+int is_address_in_array(OpAddressMode[], OpAddressMode);
+/**
+    @brief Checks if a string is a register
+*/
 int is_register(const char *);
 OpAddressMode get_address_mode(const char *);
-OperationAllowdOperands *get_allowed_operand(OperationType);
-// todo :: add free_operand
-#endif /* OPERATION_UTILS_H */
+Operand *new_empty_operand(OpAddressPosition);
+void free_operand(Operand *);
+
+#endif /** OPERATION_UTILS_H */

@@ -4,70 +4,63 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
 #include "logger.h"
 #include "macros.h"
-// change file name
-// todo :: rewrite method later
-// todo :: change name to remove first word
+
 char *remove_first_n_words(const char *string, int N) {
-    const char *start = strdup(string);
-
-    // Skip leading whitespaces
-    while (isspace(*start)) {
-        start++;
+        if (N <= 0 || string == NULL || *string == '\0') {
+        return strdup(string);
+    }
+    
+    while (isspace((unsigned char)*string)) {
+        string++;
     }
 
-    // Find the end of the first word
-    const char *end = start;
-    while (*end != '\0' && !isspace(*end)) {
-        end++;
+    int is_in_whitespace = 0;
+    while (N > 0 && *string != '\0') {
+        if (!is_in_whitespace && isspace((unsigned char)*string)) {
+            N--;
+            is_in_whitespace = 1;
+        }
+        else if (!isspace((unsigned char)*string)) {
+            is_in_whitespace = 0;
+        }
+        string++;
     }
 
-    // Skip trailing whitespaces after the first word
-    while (isspace(*end)) {
-        end++;
+    while (isspace((unsigned char)*string)) {
+        string++;
     }
 
-    // Calculate the length of the remaining string
-    size_t length = strlen(end);
-
-    // Allocate memory for the result
-    char *result = (char *)malloc((length + 1) * sizeof(char));
-    if (result == NULL) {
-        fprintf(stderr, "Memory allocation failed\n");
-        return NULL;
-    }
-
-    // Copy the remaining string to the result
-    strcpy(result, end);
-
-    return result;
+    return strdup(string);
 }
 
-int get_number_of_words(const char *original, char delimiter) {
+
+int get_number_of_words(const char *original, char *delimiter) {
     if (is_empty(original)) {
         return 0;
     }
     char *copy = strdup(original);
     int count = 0;
 
-    char *token = strtok(copy, &delimiter);
+    char *token = strtok(copy, delimiter);
 
     while (token != NULL) {
-        printf("Token is : [%s] for word : [%s]\n", token, copy);
         count++;
-        token = strtok(NULL, &delimiter);
+        token = strtok(NULL, delimiter);
     }
+    free(copy);
 
     return count;
 }
-// todo :: support +
+
 int is_whole_number(const char *original) {
     if (is_empty(original)) {
         return 0;
     }
     char *string = strdup(original);
-    if (!isdigit(*string) && strncmp(string, "-", 1)) {
+    if (!isdigit(*string) && strncmp(string, "-", 1) && strncmp(string, "+", 1)) {
         return 0;
     }
     string++;
@@ -85,8 +78,6 @@ int is_empty(const char *string) {
     return ((!string) || !string[0]);
 }
 
-
-// rewrite
 char *trim_spaces(char *string) {
     char *end;
 
@@ -108,8 +99,31 @@ char *trim_spaces(char *string) {
     return string;
 }
 
+char *get_first_word(const char *string) {
+    while (*string && isspace(*string)) {
+        string++;
+    }
+
+    const char *end = string;
+    while (*end && !isspace(*end)) {
+        end++;
+    }
+
+    size_t length = end - string;
+
+    char *first_word = (char *)malloc(length + 1);
+    if (first_word == NULL) {
+        error("Memory allocation error");
+        exit(1);
+    }
+    strncpy(first_word, string, length);
+    first_word[length] = '\0';
+
+    return first_word;
+}
+
 int is_reserved_word(const char *string) {
-    const char* reserved_words[] = {RESERVED_WORDS};
+    const char *reserved_words[] = {RESERVED_WORDS};
     size_t size = ARRAY_SIZE(reserved_words);
     for (size_t i = 0; i < size; i++) {
         if (strcmp(string, reserved_words[i]) == 0) {
@@ -119,21 +133,11 @@ int is_reserved_word(const char *string) {
     return 0;
 }
 
-// todo :: use me for string validation
-// bool is_valid_ascii(const char* str) {
-//     while (*str != '\0') {
-//         if (*str < 0 || *str > 127) {
-//             return false;
-//         }
-//         str++;
-//     }
-//     return true;
-// }
+int is_valid_ascii(unsigned char str) {
+    return str > 0 && str < 127;
+}
 
-// todo :: padding char with null
-// כל עוד זה לא מפריע לי האם אני יכול לוותר על הריפוד של char * ב NULL בסוף ?
-// או שזה בגדר מוסכמות השפה?
-// כי נגיד לי זה נראה בזבוז סתם כל עוד אני יודע בוודאות שאני לא צריך.
-
-// rewrite
-// Function to trim leading and trailing whitespaces from a string
+int starts_with(const char *string, const char *prefix) {
+   if(strncmp(string, prefix, strlen(prefix)) == 0) return 1;
+   return 0;
+}

@@ -13,34 +13,34 @@
 #include "word_handler.h"
 
 void generate_output_files(Assembler *assembler) {
-    info("Starting generating the files content to later be written");
-    info("Creating obj file content");
     FileContent *parsed_file = get_obj_file_content(assembler);
     if (parsed_file == NULL) {
         return;
     }
     write_to_file(assembler, parsed_file);
-    
+
     FileContent *ent_file = get_ent_file_content(assembler);
-    if (ent_file == NULL) {
-        return;
-    }
-    if (ent_file->size != 0) {
-        write_to_file(assembler, ent_file);
+    if (ent_file != NULL) {
+        if (ent_file->size != 0) {
+            write_to_file(assembler, ent_file);
+        } else {
+            info("Entry content is empty and so will not write %s file", ent_file->filename);
+            free(ent_file);
+        }
     } else {
-        info("Entry content is empty and so will not write %s file", ent_file->filename);
-        free(ent_file);
+        warn("Failed creating .ent file content");
     }
 
     FileContent *ext_file = get_ext_file_content(assembler);
-    if (ext_file == NULL) {
-        return;
-    }
-    if (ext_file->size != 0) {
-        write_to_file(assembler, ext_file);
+    if (ext_file != NULL) {
+        if (ext_file->size != 0) {
+            write_to_file(assembler, ext_file);
+        } else {
+            info("External content is empty and so will not write %s file", ext_file->filename);
+            free(ext_file);
+        }
     } else {
-        info("External content is empty and so will not write %s file", ext_file->filename);
-        free(ext_file);
+        warn("Failed creating .ext file content");
     }
 }
 
@@ -48,9 +48,12 @@ FileContent *get_obj_file_content(Assembler *assembler) {
     FileContent *obj_file = new_file_content(get_ob_filename(assembler->file_basename));
 
     Node *current_word = assembler->words_l_list->head;
-    info("Word %s", current_word->content);
-    // todo ::  check if the correct size
-    char *header = (char *)malloc(20);
+
+    char *header = (char *)malloc(80);
+    if (header == NULL) {
+        error("Memory allocation failed!");
+        exit(1);
+    }
     sprintf(header, "%d %d", assembler->IC, assembler->DC);
 
     add_line_to_content(obj_file, header);
@@ -67,9 +70,8 @@ char *word_to_base64(char *binary) {
     char *first = (char *)malloc(7);
     char *second = (char *)malloc(7);
     char *line = (char *)malloc(3);
-    // todo :: handle error
     if (!first || !second || !line) {
-        printf("Memory allocation failed.\n");
+        error("Memory allocation failed.\n");
         return NULL;
     }
     strncpy(first, binary, 6);
@@ -79,7 +81,6 @@ char *word_to_base64(char *binary) {
     sprintf(line, "%c%c", base_64_array[strtol(first, NULL, 2)], base_64_array[strtol(second, NULL, 2)]);
     free(first);
     free(second);
-
     return line;
 }
 
@@ -91,6 +92,10 @@ FileContent *get_ent_file_content(Assembler *assembler) {
     for (i = 0; i < table->size; i++) {
         if (table->symbols[i]->is_entry) {
             char *line = (char *)malloc(MAX_LINE_LENGTH);
+            if (line == NULL) {
+                error("Memory allocation failed!");
+                exit(1);
+            }
             sprintf(line, "%s %d", table->symbols[i]->name, table->symbols[i]->line_number);
             add_line_to_content(file, line);
         }

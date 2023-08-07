@@ -10,13 +10,13 @@
 #include "logger.h"
 #include "macros.h"
 #include "string_utils.h"
-#include "word_handler.h"
 
 void parse_macros(Assembler *assembler) {
     FileContent *parsed_file = get_parsed_file(assembler);
     if (parsed_file == NULL) {
         return;
     }
+    info("Succesfully parsed the %s.as file", assembler->file_basename);
 
     write_to_file(assembler, parsed_file);
 }
@@ -25,93 +25,113 @@ FileContent *get_parsed_file(Assembler *assembler) {
     char *filename = get_as_filename(assembler->file_basename);
     FILE *file = fopen(filename, "r");
     if (file == NULL) {
-        add_error(assembler, "Failed opening %s", filename);
+        add_error(assembler, "Failed opening %s, it either do not exist or you don't have permission to open the file", filename);
         free(filename);
         return NULL;
     }
+    info("Started parsing %s content", filename);
     free(filename);
     MacroTable *table = new_macro_table();
     FileContent *parsed_file = new_file_content(get_am_filename(assembler->file_basename));
     int in_macro = 0;
     char line[MAX_LINE_LENGTH];
-
-    // todo :: decrease the size of this while, too big
-    // todo :: maybe use feof with getc
-    while (fgets(line, MAX_LINE_LENGTH, file) != NULL) {
-        size_t length = strlen(line);
+    while (!feof(file)) {
+        memset(line, '\0', MAX_LINE_LENGTH);
         assembler->current_line_number++;
-        if (line[length - 1] != '\n') {
-            add_error(assembler, "line number [%d] which start with [%s] is longer then 80 chars", length, line);
-            // todo :: are the two lines needed?
-            
-            // keep reading until end of line
-            int c;
-            while ((c = fgetc(file)) != '\n' && c != EOF);
+        char c;
+        int i;
+        int arr_i = 0;
+        int found_first_string = 0;
+        for (i = 0; i <= MAX_LINE_LENGTH; i++) {
+            c = fgetc(file);
+            if (!found_first_string) {
+                if (isspace(c)) {
+                    continue;
+                } else {
+                    found_first_string = 1;
+                }
+            }
+            if (c == '\n' || c == EOF) {
+                line[i] = '\0';
+                break;
+            }
+            line[arr_i++] = c;
+        }
+        if (line[sizeof(line) - 1] != '\0') {
+            add_error(assembler, "Invalid longer then 80 letters line found in line number : [%d] and starting with : [%s]", assembler->current_line_number, line);
+            while ((c = fgetc(file)) != '\n' && c != EOF) {
+            }
             continue;
         }
 
-        if (length > 0 && line[length - 1] == '\n') {
-            line[length - 1] = '\0';
+        assembler->current_line = line;
+        if (in_macro && is_macro(line)) {
+            add_error(assembler, "Nested macros are forbidden, found [%s], stopping operation", line);
+            break;
         }
-        printf("[%s]\n", line);
-        char *x = trim_spaces(line);
-        printf("[%s]\n", x);
-        printf("=======");
-
-        if (in_macro) {
-            if (is_macro(line)) {
-                add_error(assembler, "Nested macros are forbidden! found %s", line);
-                break;
-            }
-            if (is_end_macro(line)) {
-                in_macro = 0;
-                continue;
-            }
-            add_line_to_macro(table->tail, line);
-        } else if (is_macro(line)) {
-            if (get_number_of_words(line, ' ') != 2) {
-                add_error(assembler, "Wrong number of paramters to mcro, expected 2 but got %s", line);
-                continue;
-            }
-            in_macro = 1;
-            Macro *macro = new_macro(line);
-            add_macro_to_table(table, macro);
-        } else if (is_mcro_usage(line)) {
-            Macro *macro = find_macro(table, line);
-            if (macro == NULL) {
-                add_error(assembler, "macro %s used without defining it", line);
-                continue;
-            }
-            add_macro_to_content(parsed_file, macro);
-        } else {  // regular line
-            add_line_to_content(parsed_file, line);
-        }
+        parse_line(assembler, table, parsed_file, line, &in_macro);
     }
-    free(table);
+    free_macro_table(table);
     fclose(file);
     return parsed_file;
 }
 
-Macro *new_macro(char *header_line) {
+void parse_line(Assembler *assembler, MacroTable *table, FileContent *parsed_file, char *line, int *in_macro) {
+    if (*in_macro) {
+        if (is_end_macro(line)) {
+            debug("emdmcro found in line [%d] with content [%s]", assembler->current_line_number, line);
+            *in_macro = 0;
+            return;
+        }
+        add_line_to_macro(table->tail, line);
+    } else if (is_macro(line)) {
+        debug("Macro found in line %d with content %s", assembler->current_line_number, line);
+        char delmiter[] = " ";
+        if (get_number_of_words(line, delmiter) != 2) {
+            add_error(assembler, "Wrong number of paramters to mcro, expected 2 but got %s", line);
+            return;
+        }
+        *in_macro = 1;
+        Macro *macro = new_macro(line);
+        add_macro_to_table(table, macro);
+    } else if (is_mcro_usage(line)) {
+        Macro *macro = find_macro(table, line);
+        if (macro == NULL) {
+            add_error(assembler, "macro %s used without defining it in line %d", line, assembler->current_line_number);
+            return;
+        }
+        add_macro_to_content(parsed_file, macro);
+    } else {  // regular line
+        add_line_to_content(parsed_file, line);
+    }
+}
+
+Macro *new_macro(const char *header_line) {
+    char *copy = remove_first_n_words(header_line, 1);
     Macro *macro = (Macro *)malloc(sizeof(Macro));
     if (macro == NULL) {
-        printf("Memory allocation error.\n");
+        error("Memory allocation error");
         exit(1);
     }
     macro->next = NULL;
     macro->size = 0;
     macro->capacity = INITIAL_MACRO_SIZE;
     macro->content = (char **)malloc(INITIAL_MACRO_SIZE * sizeof(char *));
-
-    header_line = remove_first_n_words(header_line, 1);
-    header_line = trim_spaces(header_line);
-
-    strcpy(macro->name, header_line);
+    if (macro->content == NULL) {
+        error("Memory allocation failed!");
+        exit(1);
+    }
+    strcpy(macro->name, copy);
+    free(copy);
     return macro;
 }
 
 MacroTable *new_macro_table() {
     MacroTable *macro_table = (MacroTable *)malloc(sizeof(MacroTable));
+    if (macro_table == NULL) {
+        error("Memory allocation failed!");
+        exit(1);
+    }
     macro_table->head = NULL;
     macro_table->tail = NULL;
     return macro_table;
@@ -141,14 +161,14 @@ Macro *find_macro(MacroTable *table, const char *string) {
 }
 
 int is_mcro_usage(const char *line) {
-    int flag = 1;
-    if (get_number_of_words(line, ' ') != 1) {
-        flag = 0;
+    char delmiter[] = " ";
+    if (get_number_of_words(line, delmiter) != 1) {
+        return 0;
     }
     if (is_reserved_word(line)) {
-        flag = 0;
+        return 0;
     }
-    return flag;
+    return 1;
 }
 
 int is_macro(const char line[MAX_LINE_LENGTH]) {
@@ -166,12 +186,13 @@ void add_macro_to_content(FileContent *file_content, Macro *macro) {
     }
 }
 
-void add_line_to_macro(Macro *macro, char *line) {
+void add_line_to_macro(Macro *macro, const char *line) {
     if (macro->size == macro->capacity) {
+        info("Resizing macros file from %d to %d", macro->capacity, macro->capacity * 2);
         macro->capacity *= 2;
         char **temp = (char **)realloc(macro->content, macro->capacity * sizeof(char *));
         if (temp == NULL) {
-            printf("Memory reallocation error.\n");
+            error("Memory reallocation error.\n");
             exit(1);
         }
         macro->content = temp;
@@ -179,7 +200,7 @@ void add_line_to_macro(Macro *macro, char *line) {
 
     macro->content[macro->size] = strdup(line);
     if (macro->content[macro->size] == NULL) {
-        printf("Memory allocation error.\n");
+        error("Memory allocation error");
         exit(1);
     }
 
@@ -189,7 +210,7 @@ void add_line_to_macro(Macro *macro, char *line) {
 void free_macro_table(MacroTable *table) {
     while (table->head != NULL) {
         Macro *tmp = table->head->next;
-        free(table->head);
+        free_macro(table->head);
         table->head = tmp;
     }
     free(table);

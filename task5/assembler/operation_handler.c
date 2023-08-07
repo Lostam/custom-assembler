@@ -8,7 +8,6 @@
 #include "macros.h"
 #include "string_utils.h"
 
-// todo :: move to constants file
 OpeationMap operation_mapping[] = {
     {"mov", mov},
     {"cmp", cmp},
@@ -28,26 +27,23 @@ OpeationMap operation_mapping[] = {
     {"stop", stop},
 };
 
-// todo :: change name
-// todo :: move to constants file
-
 OperationAllowdOperands allowd_operands_mapping[] = {
-    {mov, {Immediate, Direct, Register}, {Direct, Register}},
-    {cmp, {Immediate, Direct, Register}, {Immediate, Direct, Register}},
-    {add, {Immediate, Direct, Register}, {Direct, Register}},
-    {sub, {Immediate, Direct, Register}, {Direct, Register}},
-    {not, {Undefined}, {Direct, Register}},
-    {clr, {Undefined}, {Direct, Register}},
-    {lea, {Register}, {Direct, Register}},
-    {inc, {Undefined}, {Direct, Register}},
-    {dec, {Undefined}, {Direct, Register}},
-    {jmp, {Undefined}, {Direct, Register}},
-    {bne, {Undefined}, {Direct, Register}},
-    {red, {Undefined}, {Direct, Register}},
-    {prn, {Undefined}, {Immediate, Direct, Register}},
-    {jsr, {Undefined}, {Direct, Register}},
-    {rts, {Undefined}, {Undefined}},
-    {stop, {Undefined}, {Undefined}},
+    {mov, {IMMEDIATE_MODE, DIRECT_MODE, REGISTER_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {cmp, {IMMEDIATE_MODE, DIRECT_MODE, REGISTER_MODE}, {IMMEDIATE_MODE, DIRECT_MODE, REGISTER_MODE}},
+    {add, {IMMEDIATE_MODE, DIRECT_MODE, REGISTER_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {sub, {IMMEDIATE_MODE, DIRECT_MODE, REGISTER_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {not, {UNDEFINED_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {clr, {UNDEFINED_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {lea, {REGISTER_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {inc, {UNDEFINED_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {dec, {UNDEFINED_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {jmp, {UNDEFINED_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {bne, {UNDEFINED_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {red, {UNDEFINED_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {prn, {UNDEFINED_MODE}, {IMMEDIATE_MODE, DIRECT_MODE, REGISTER_MODE}},
+    {jsr, {UNDEFINED_MODE}, {DIRECT_MODE, REGISTER_MODE}},
+    {rts, {UNDEFINED_MODE}, {UNDEFINED_MODE}},
+    {stop, {UNDEFINED_MODE}, {UNDEFINED_MODE}},
 };
 
 OperationType string_to_operation(const char *op_str) {
@@ -68,6 +64,24 @@ const char *operation_to_string(OperationType operation) {
     return "";
 }
 
+// I'm using static here so I won't have to clear the string every time, it is used only for logging
+const char *operation_mode_to_string(OpAddressMode address_mode) {
+    static char str[10];
+    if (address_mode == IMMEDIATE_MODE) {
+        strcpy(str, "immediate");
+    } else if (address_mode == DIRECT_MODE) {
+        strcpy(str, "direct");
+    } else if (address_mode == REGISTER_MODE) {
+        strcpy(str, "register");
+    } else if (address_mode == UNDEFINED_MODE) {
+        strcpy(str, "empty");
+    } else {
+        strcpy(str, "");
+    }
+
+    return str;
+}
+
 int is_valid_operation_name(const char *op_str) {
     OperationType op = string_to_operation(op_str);
     if (op == invalid_op) {
@@ -77,6 +91,10 @@ int is_valid_operation_name(const char *op_str) {
 }
 
 void validate_operands(Assembler *assembler, OperationType operation, Operand *operand) {
+    if (operand->type == IMMEDIATE_MODE && atoll(operand->value) > MAXIMUM_ALLOWED_NUMBER) {
+        add_error(assembler, "Invalid immediate operand [%s] : number [%s] is larger then the allowed %d",
+                  assembler->current_line, operand->value, MAXIMUM_ALLOWED_NUMBER);
+    }
     OperationAllowdOperands *allowed_operands = get_allowed_operand(operation);
     if (allowed_operands != NULL) {
         OpAddressMode *arr;
@@ -89,19 +107,18 @@ void validate_operands(Assembler *assembler, OperationType operation, Operand *o
             arr = allowed_operands->source;
             name = "source";
         }
-        
+
         if (!is_address_in_array(arr, operand->type)) {
-            add_error(assembler, "Operation [%s] has an invalid [%s] operand [%s], the operation is not supporting address mode %d\n",
-         operation_to_string(operation), name, operand->value, operand->type);
+            add_error(assembler, "Operation [%s] in line [%d] has an invalid [%s] operand [%s], the operation is not supporting address mode [%s]",
+                      operation_to_string(operation), assembler->current_line_number, name, operand->value, operation_mode_to_string(operand->type));
         }
+
         return;
     }
 }
 
-// fixme :: should use pointer?
 int is_address_in_array(OpAddressMode array[], OpAddressMode target) {
-    size_t size = ARRAY_SIZE(array);  // fixme
-    for (size_t i = 0; i <= size; i++) {
+    for (size_t i = 0; i < 3; i++) {
         if (array[i] == target) {
             return 1;
         }
@@ -117,15 +134,15 @@ OperationAllowdOperands *get_allowed_operand(OperationType operation) {
     }
     return NULL;
 }
-// todo :: change me to count not undefined
+
 int get_operands_number(OperationType operation) {
     OperationAllowdOperands *allowed_operands = get_allowed_operand(operation);
     if (allowed_operands == NULL) {
         return -1;
     }
 
-    int is_dest_empty = allowed_operands->destination[0] == Undefined;
-    int is_src_empty = allowed_operands->source[0] == Undefined;
+    int is_dest_empty = allowed_operands->destination[0] == UNDEFINED_MODE;
+    int is_src_empty = allowed_operands->source[0] == UNDEFINED_MODE;
 
     if (!is_src_empty && !is_dest_empty) {
         return 2;
@@ -136,54 +153,56 @@ int get_operands_number(OperationType operation) {
     }
 }
 
-// todo :: make sure it is freeded later
-// Operand *new_operand(const char *operand, OpAddressPosition pos) {
-//     Operand *addressOp = (Operand *)malloc(sizeof(Operand));
-//     addressOp->value = operand;
-//     addressOp->type = get_address_mode(operand);
-//     addressOp->pos = pos;
-//     return addressOp;
-// }
-
 Operand *new_empty_operand(OpAddressPosition pos) {
     Operand *operand = (Operand *)malloc(sizeof(Operand));
+    if (operand == NULL) {
+        error("Memory allocation failed!");
+        exit(1);
+    }
     operand->pos = pos;
-    operand->type = Undefined;
-    operand->value = "\0";
+    operand->type = UNDEFINED_MODE;
+    operand->value = NULL;
     return operand;
 }
 
 void add_operand_values(Operand *operand, const char *value) {
-    operand->value = value;
-    operand->type = get_address_mode(value);
-    debug("Address mode for operand [%s] is : %d", value, operand->type);
+    operand->value = strdup(value);
+    operand->type = get_address_mode(operand->value);
+    debug("Address mode for operand [%s] is : [%s]", operand->value, operation_mode_to_string(operand->type));
 }
 
 OpAddressMode get_address_mode(const char *operand) {
     if (is_empty(operand)) {
-        return Undefined;
+        return UNDEFINED_MODE;
     }
     if (is_register(operand)) {
-        return Register;
+        return REGISTER_MODE;
     }
     if (is_whole_number(operand)) {
-        return Immediate;
+        return IMMEDIATE_MODE;
     }
-    return Direct;
+    return DIRECT_MODE;
 }
 
 int is_register(const char *operand) {
     char *copy = strdup(operand);
+    int result = 1;
     if (strlen(copy) != 3) {
-        return 0;
+        result = 0;
     }
-    if (strncmp(copy, "@r", 2)) {
-        return 0;
+    else if (strncmp(copy, "@r", 2)) {
+        result = 0;
     }
-    if (!isdigit(copy[2]) || 0 > atoi(&copy[2]) || atoi(&copy[2]) > 7) {
-        return 0;
+    else if (!isdigit(copy[2]) || 0 > atoi(&copy[2]) || atoi(&copy[2]) > 7) {
+        result = 0;
     }
-    return 1;
+    free(copy);
+    return result;
 }
 
-// todo :: add free operand
+void free_operand(Operand *operand) {
+    if (operand->value != NULL) {
+        free(operand->value);
+    }
+    free(operand);
+}

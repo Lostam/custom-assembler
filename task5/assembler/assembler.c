@@ -5,98 +5,53 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "file_builder.h"
 #include "logger.h"
 #include "macros.h"
-#include "statement_handler.h"
-#include "symbol_handler.h"
-#include "executor.h"
 
 /**
- * Validation each line, will build the statements, directives and instructions and validate them
+ * This method will add the error to a linked list, the linked list is saved on the assembler object itself
  */
-void syntax_validation(Assembler *assembler) {
-    char line[MAX_LINE_LENGTH];
-    assembler->current_line_number = 0;
-    while (fgets(line, MAX_LINE_LENGTH, assembler->as_file) != NULL) {
-        size_t length = strlen(line);
-        if (length > 0 && line[length - 1] == '\n') {
-            line[length - 1] = '\0';
-        }
-        assembler->current_line = line;
-        assembler->current_line_number++;
-        validate_statement(assembler);
-    }
-}
-
-/**
- * This step is resposible for collecting the data before building the files,
- * it will fill the symbol table with all the declared symbols and will also count the
- * instructions and data words while not building them yet.
- */
-void data_collection(Assembler *assembler) {
-    assembler->IC = 0;
-    assembler->DC = 0;
-    fseek(assembler->as_file, 0, SEEK_SET);
-    assembler->symbol_table = (SymbolTable *)malloc(sizeof(SymbolTable));
-    char line[MAX_LINE_LENGTH];
-    assembler->current_line_number = 0;
-    while (fgets(line, MAX_LINE_LENGTH, assembler->as_file) != NULL) {
-        size_t length = strlen(line);
-        if (length > 0 && line[length - 1] == '\n') {
-            line[length - 1] = '\0';
-        }
-        assembler->current_line = line;
-        first_data_collection(assembler);
-        assembler->current_line_number++;
-    }
-    add_counter_to_data(assembler);
-}
-
-/**
- * Building the words from instructions and directives and will mark entries/externals
- */
-void build_data_for_files(Assembler *assembler) {
-    assembler->IC = 0;
-    fseek(assembler->as_file, 0, SEEK_SET);
-    char line[MAX_LINE_LENGTH];
-    assembler->current_line_number = 0;
-    while (fgets(line, MAX_LINE_LENGTH, assembler->as_file) != NULL) {
-        size_t length = strlen(line);
-        assembler->current_line_number++;
-        if (length > 0 && line[length - 1] == '\n') {
-            line[length - 1] = '\0';
-        }
-        assembler->current_line = line;
-        second_data_collection(assembler);
-    }
-}
-
-/**
- * Todo :: add doc
- * create close_assembler method
- */
-// todo :: convert to linked list
 void add_error(Assembler *assembler, const char *unformatted_error, ...) {
-    // log the line number
-    // log the line content
     assembler->has_error = 1;
+
     va_list args;
     va_start(args, unformatted_error);
-
-    char error[300];  // todo :: check size
+    char error[300];  // Limiting error size to 300 chars
     vsnprintf(error, sizeof(error), unformatted_error, args);
     va_end(args);
-    strcat(error, "\n");  // todo :: add line number
-    strcat(assembler->error, error);
+
+    char *message = (char *)malloc(MAX_LINE_LENGTH + 100 + sizeof(error));
+    sprintf(message, "Line Number : [%d], line content : [%s] \n %s \n", assembler->current_line_number, assembler->current_line, error);
+    add_string_to_list(assembler->error_l_list, message);
+
+    free(message);
 }
 
 Assembler *new_assembler(char *filename) {
     Assembler *assembler = (Assembler *)malloc(sizeof(Assembler));
+    if (assembler == NULL) {
+        error("Memory allocation failed!");
+        exit(1);
+    }
     assembler->has_error = 0;
-    assembler->file_basename = filename;
-    // use constant
-    assembler->error = malloc(200); // todo :: use linked list
+    assembler->file_basename = strdup(filename);
+    assembler->error_l_list = new_linked_list();
     assembler->words_l_list = new_linked_list();
+    assembler->as_file = NULL;
     return assembler;
+}
+
+void free_assembler(Assembler *assembler) {
+    if (assembler->as_file != NULL) {
+        fclose(assembler->as_file);
+    }
+    if (assembler->symbol_table != NULL) {
+        free_symbol_table(assembler->symbol_table);
+    }
+    if (assembler->file_basename != NULL) {
+        free(assembler->file_basename);
+    }
+    free_linked_list(assembler->error_l_list);
+    free_linked_list(assembler->words_l_list);
+    free(assembler);
 }

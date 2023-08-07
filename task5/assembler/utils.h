@@ -17,6 +17,7 @@ struct node_s {
 struct string_linked_list_s {
     Node *tail;  
     Node *head;
+    size_t size;
 };
 
 Node *new_node(char *);

@@ -13,6 +13,7 @@ typedef enum symbol_sign_e SymbolSign;
 #include <string.h>
 #include "assembler.h"
 #include "statement_handler.h"
+#include "directive_handler.h"
 #include "utils.h"
 
 enum symbol_type_e {
@@ -28,27 +29,50 @@ enum symbol_sign_e {
 struct symbol_s {
     int line_number;      // the IC/DC counter of the symbol
     SymbolType type;   // either external or internal
-    SymbolSign sign;   // either data or code tyoe
+    SymbolSign sign;   // either data or code type
     int is_entry;      // if was declared in an entry directive
     StringLinkedList *used_at;      // Used only for external symbols, a linked list of the symbol's usages
-    const char *name;  // the symbol value
+    char *name;  // the symbol value
 };
 
 struct symbol_table_s {
     Symbol **symbols; /**< The label string. */
-    size_t size;      /**< The line number associated with the label. */
-    size_t capacity;  /**< The line number associated with the label. */
+    size_t size;      /**< Current size of the label table. */
+    size_t capacity;  /**< Maximum current capacity of the table. */
 };
 
 
-void collect_symbol(Assembler *, Statement *);
+/**
+    @brief Reads the statement for all the symbols and adds them to the symbols table
+*/
+void collect_symbols_from_statement(Assembler *, Statement *);
+/**
+    @brief Adding symbol to symbols table
+*/
 void add_to_table(Assembler *, Symbol *);
+/**
+    @brief Adding IC to all the data symbols
+*/
 void add_counter_to_data(Assembler *);
-int is_symbol_in_map(SymbolTable *, Symbol *);
-Symbol *get_symbol_from_statement(Statement *, int, int);
-SymbolTable *new_symbol_table(void);
-int is_valid_label(const char *);
+/**
+    @brief Searches the symbol table and returns a symbol or null if not found
+*/
 Symbol *get_symbol_by_name(SymbolTable *,const char *);
+/**
+    @brief Reads an external directive and adds it symbols to the table
+*/
+void add_external_symbols(Assembler *, Directive *);
+/**
+    @brief Reads a symbol declared in the start of a statement and adds it symbols to the table
+*/
+void add_regular_symbol(Assembler *, Statement *);
+/**
+    @brief Returns if symbol is in the map
+*/
+int is_symbol_in_map(SymbolTable *, Symbol *);
+void validate_label(Assembler *, const char *);
+Symbol *new_empty_symbol(void);
+SymbolTable *new_symbol_table(void);
 void free_symbol_table(SymbolTable *);
 void free_symbol(Symbol *);
 

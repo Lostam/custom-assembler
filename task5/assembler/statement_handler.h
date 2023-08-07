@@ -22,20 +22,30 @@ typedef enum {
 } StatementGoal;
 
 typedef struct {
-    const char* line;
+    char* line; /**< the statemenet full line, including symbol */
     StatementType type;
-    StatementGoal goal;
-    const char *symbol; // is it needed
+    StatementGoal goal; /**< MUST CALL set_statement_goal to use */
+    char *symbol; /**< The symbol at the start of the statement, if exists */
 } Statement;
 
 #include "assembler.h"
 
-void set_statement_values(Statement *,const char *);
 Statement *new_statement(const char *);
+/**
+    @brief Sets all statemnt values besides goal
+*/
+void set_statement_values(Statement *,const char *);
+/**
+    @brief Returns the statement without it symbol(i.e the "command")
+*/
 char *get_command_line(Statement *);
-void validate_statement(Assembler *);
+/**
+    @brief Sets the goal of the statement, either data or instruction - used for word counting
+*/
 void set_statement_goal(Statement *);
+void validate_statement(Assembler *);
+void free_statement(Statement *);
 
-#endif /* STATEMENT_UTILS_H */
+#endif /** STATEMENT_UTILS_H */
 
 

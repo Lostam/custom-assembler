@@ -1,0 +1,62 @@
+==1922== Memcheck, a memory error detector
+==1922== Copyright (C) 2002-2009, and GNU GPL'd, by Julian Seward et al.
+==1922== Using Valgrind-3.6.0.SVN-Debian and LibVEX; rerun with -h for copyright info
+==1922== Command: ./assembler ps.as ex1
+==1922== 
+--1922-- Valgrind options:
+--1922--    --suppressions=/usr/lib/valgrind/debian-libc6-dbg.supp
+--1922--    -v
+--1922--    --leak-check=full
+--1922-- Contents of /proc/version:
+--1922--   Linux version 2.6.32-33-generic (buildd@zirconium) (gcc version 4.4.3 (Ubuntu 4.4.3-4ubuntu5) ) #72-Ubuntu SMP Fri Jul 29 21:08:37 UTC 2011
+--1922-- Arch and hwcaps: X86, x86-sse1-sse2
+--1922-- Page sizes: currently 4096, max supported 4096
+--1922-- Valgrind library directory: /usr/lib/valgrind
+--1922-- Reading syms from /lib/ld-2.11.1.so (0x4000000)
+--1922-- Reading debug info from /lib/ld-2.11.1.so ..
+--1922-- .. CRC mismatch (computed 45f50ae1 wanted 137bc614)
+--1922-- Reading debug info from /usr/lib/debug/lib/ld-2.11.1.so ..
+--1922-- Reading syms from /home/rugrat/study/20465_Systems_Programming_Lab/mm14/assembler (0x8048000)
+--1922-- Reading syms from /usr/lib/valgrind/memcheck-x86-linux (0x38000000)
+--1922--    object doesn't have a dynamic symbol table
+--1922-- Reading suppressions file: /usr/lib/valgrind/debian-libc6-dbg.supp
+--1922-- Reading suppressions file: /usr/lib/valgrind/default.supp
+--1922-- REDIR: 0x40160b0 (index) redirected to 0x3803e9b3 (vgPlain_x86_linux_REDIR_FOR_index)
+--1922-- Reading syms from /usr/lib/valgrind/vgpreload_core-x86-linux.so (0x401f000)
+--1922-- Reading syms from /usr/lib/valgrind/vgpreload_memcheck-x86-linux.so (0x4022000)
+==1922== WARNING: new redirection conflicts with existing -- ignoring it
+--1922--     new: 0x040160b0 (index               ) R-> 0x04025c30 index
+--1922-- REDIR: 0x4016290 (strlen) redirected to 0x4026070 (strlen)
+--1922-- Reading syms from /lib/tls/i686/cmov/libc-2.11.1.so (0x403f000)
+--1922-- Reading debug info from /lib/tls/i686/cmov/libc-2.11.1.so ..
+--1922-- .. CRC mismatch (computed 2236eb0a wanted a071c0c3)
+--1922-- Reading debug info from /usr/lib/debug/lib/tls/i686/cmov/libc-2.11.1.so ..
+--1922-- REDIR: 0x40b2b10 (rindex) redirected to 0x4025ae0 (rindex)
+--1922-- REDIR: 0x40aef40 (malloc) redirected to 0x4024e9b (malloc)
+--1922-- REDIR: 0x40b2730 (strlen) redirected to 0x401f44c (_vgnU_ifunc_wrapper)
+--1922-- REDIR: 0x40b2770 (__strlen_sse2) redirected to 0x4026030 (strlen)
+--1922-- REDIR: 0x40b2140 (strcmp) redirected to 0x401f44c (_vgnU_ifunc_wrapper)
+--1922-- REDIR: 0x4157240 (__strcmp_ssse3) redirected to 0x4026630 (strcmp)
+--1922-- REDIR: 0x40b2a30 (strncpy) redirected to 0x4026270 (strncpy)
+--1922-- REDIR: 0x40b33a0 (memchr) redirected to 0x40267b0 (memchr)
+--1922-- REDIR: 0x40afec0 (realloc) redirected to 0x4024f4a (realloc)
+--1922-- REDIR: 0x40b2200 (strcpy) redirected to 0x40260b0 (strcpy)
+--1922-- REDIR: 0x40b51e0 (rawmemchr) redirected to 0x4027540 (rawmemchr)
+--1922-- REDIR: 0x40aee60 (free) redirected to 0x4024ab5 (free)
+--1922-- REDIR: 0x40b1e20 (strcat) redirected to 0x4025cc0 (strcat)
+--1922-- REDIR: 0x40b52b0 (strchrnul) redirected to 0x4027510 (strchrnul)
+--1922-- REDIR: 0x40b27f0 (__GI_strlen) redirected to 0x4026050 (__GI_strlen)
+ps.as compiled successfully
+ex1 compiled successfully
+==1922== 
+==1922== HEAP SUMMARY:
+==1922==     in use at exit: 0 bytes in 0 blocks
+==1922==   total heap usage: 542 allocs, 542 frees, 10,987 bytes allocated
+==1922== 
+==1922== All heap blocks were freed -- no leaks are possible
+==1922== 
+==1922== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 12 from 7)
+--1922-- 
+--1922-- used_suppression:     12 dl-hack3-cond-1
+==1922== 
+==1922== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 12 from 7)

@@ -1,0 +1,77 @@
+// All these string should be successfully parsed.
+
+    char *line = "\t   \t\n";
+
+    char *line = "; Hello There!\n";
+
+char *line[] = {
+    "mov  foo\n",
+        "mov r2 \n",
+        "mov y[i][r1] \n",
+        "mov  y [ i ] [    r0  ] \n",
+        "mov y[*j] \n",
+        "mov  y  [ *   j  ]  \n",
+        "mov #123 \n",
+        "mov #-123\n",
+        };
+     
+char *line[] = {
+    "mov  foo  ,  r1\n",
+        "mov foo,r1\n",
+        "mov r2,r1\n",
+        "mov y[i][r1],r1\n",
+        "mov  y [ i ] [    r0  ]  ,  r1 \n",
+        "mov  r1, y [i] [    r7  ]  \n",
+        "mov y[*j],r1\n",
+        "mov  r1, y  [ *   j  ]  \n",
+        "mov #123,r1\n",
+        "mov #-123,r1\n",
+        "mov   r1  ,   #+123\n",
+        };
+     
+    char *line = "codeLabel1: mov r[*j1],r1\n";
+
+    char *line = "codeLabel1: hlt \n";
+
+char *line[] = {
+        "  .extern   foo\n",
+        ".entry foo \n",
+        };
+
+    char *line = ".data +123,  -456, 789 \n";
+char *line[] = {
+        ".string \"dsf 123 \\\"'!@#$%^&*()+_=-\" \n",
+        };
+char *line[] = {
+        "trash: .string \"dsf 123 \\\"'!@#$%^&*()+_=-\" \n",
+        };
+
+// All these string should produce errors
+
+    char *line = "codeLabel1: movr[*j1],r1\n";
+
+char *line[] = { 
+        "mov  1foo  ,  r1\n", /* invalid label */
+        "mov  foo123456789012345678901234567890  ,  r1\n",/* label too long */
+        "mov foo*,r1\n",/* invalid char following label */
+        "mov y[i],r1\n",/* missing second index */
+        "mov  y [ i ] [    *r0  ]  ,  r1 \n",/* invalid second index */
+        "mov  r1[, y [i] [    7  ]  \n",/* unbalanced [ */
+        "mov  r1[a , y [i] [    7  ]  \n",/* unbalanced [ */
+        "mov #123U,r1\n",/* invalid literal */
+        "mov # -123,r1\n",/* invalid literal */
+        
+        };
+
+
+    char *line = " codeLabel1: movr[*j1],r1\n";
+
+    char *line = " ; Hello There!\n";
+
+    char *line[] = { 
+        "r1: hlt \n",
+        "mov: hlt \n",
+        };
+
+
+

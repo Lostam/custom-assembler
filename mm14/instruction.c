@@ -201,7 +201,7 @@ int addDstOp( instruction inst, const char *opString ) {
 	return 0;
 }
 
-/* calculates how many machine words the instruction and it's operand take up
+/* calculates how many machine words the instruction and it's operand take up 
  */
 int getInstSize( instruction inst ) {
 	return 1 + ( inst->src !=

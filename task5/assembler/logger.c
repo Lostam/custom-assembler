@@ -13,6 +13,10 @@ char* getTimestamp() {
 }
 
 void debug(const char* format, ...) {
+    if (1 == 1) {
+        // stupid off switch
+        return;
+    }
     printf("[%s] [DEBUG] ", getTimestamp());
 
     va_list args;
@@ -55,5 +59,3 @@ void error(const char* format, ...) {
 
     fprintf(stderr, "\n");
 }
-
-// fixme :: maybe improve this code later;

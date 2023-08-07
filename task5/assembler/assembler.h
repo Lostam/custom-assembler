@@ -6,38 +6,32 @@ typedef struct assembler_s Assembler;
 #include <stdarg.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdlib.h>
-#include "word_handler.h"
-#include "symbol_handler.h"
 
-typedef struct {
-    size_t number;
-    char *content;
-} Line;
+#include "symbol_handler.h"
+#include "word_handler.h"
 
 /**
  * @brief Represents an assembler object.
  */
 struct assembler_s {
-    int IC;                       /**< The instruction counter. */
-    int DC;                       /**< The data counter. */
-    SymbolTable *symbol_table;    /**< The mapping of labels to line numbers. */
-    StringLinkedList *words_l_list;    /**< The mapping of labels to line numbers. */
-    char *error;                  /**< The error messages, null if there are no errors. */
-    int has_error;                  /**< The error messages, null if there are no errors. */
-    FILE *as_file;
-    char *file_basename;
-    char *current_line;  // limit to 100 // make a struct
-    int current_line_number;
+    int IC;                         /**< The instruction counter. */
+    int DC;                         /**< The data counter. */
+
+    // maybe I should have used hashmap?
+    SymbolTable *symbol_table;      /**< The mapping of labels to line numbers. */
+    
+    StringLinkedList *words_l_list; /**< Linked list of built words. */
+    StringLinkedList *error_l_list; /**< The error messages, empty if there are no errors. */
+    int has_error;                  /**< marks if an error exists. */
+    FILE *as_file;                  /**< the .as file, it is used alot so it's better to save it. */
+    char *file_basename;            /**< the file base name as passed by the user. */
+    char *current_line;             /**< content of the current working line. */
+    int current_line_number;        /**< number of the current working line - if in .am file it will the line number of the .am file! */
 };
 
-Assembler *create_assembler(FILE *);
 void close_assembler(Assembler *);
-void syntax_validation(Assembler *);
 void add_error(Assembler *, const char *, ...);
-void data_collection(Assembler *);
-void build_data_for_files(Assembler *);
 Assembler *new_assembler(char *);
+void free_assembler(Assembler *);
 
-// todo:: check words are not larger then 1024
 #endif /* ASSEMBLER_H */

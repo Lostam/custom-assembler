@@ -60,6 +60,10 @@ char *get_filename_with_extension(const char *filename, const char *extension) {
     size_t extension_len = strlen(extension);
     size_t new_len = original_len + extension_len + 1;  // +1 for the null terminator
     char *new_filename = (char *)malloc(new_len);
+    if (new_filename == NULL) {
+        error("Memory allocation failed!");
+        exit(1);
+    }
     strcpy(new_filename, filename);
     strcat(new_filename, extension);
     new_filename[new_len - 1] = '\0';
@@ -67,6 +71,7 @@ char *get_filename_with_extension(const char *filename, const char *extension) {
 }
 
 void write_to_file(Assembler *assembler, FileContent *file_content) {
+    info("Trying to write file : %s", file_content->filename);
     FILE *file;
     file = fopen(file_content->filename, "w");
     if (file == NULL) {
@@ -87,12 +92,12 @@ void write_to_file(Assembler *assembler, FileContent *file_content) {
 FileContent *new_file_content(char *filename) {
     FileContent *file_content = (FileContent *)malloc(sizeof(FileContent));
     if (file_content == NULL) {
-        printf("Memory allocation error.\n");
+        error("Memory allocation error");
         exit(1);
     }
     file_content->content = (char **)malloc(INITIAL_FILE_CONTENT_SIZE * sizeof(char *));
     if (file_content->content == NULL) {
-        printf("Memory allocation error.\n");
+        error("Memory allocation error");
         exit(1);
     }
     file_content->size = 0;
@@ -106,7 +111,7 @@ void add_line_to_content(FileContent *file_content, char *line) {
         file_content->capacity *= 2;
         char **temp = (char **)realloc(file_content->content, file_content->capacity * sizeof(char *));
         if (temp == NULL) {
-            printf("Memory reallocation error.\n");
+            error("Memory reallocation error.\n");
             exit(1);
         }
         file_content->content = temp;
@@ -114,7 +119,7 @@ void add_line_to_content(FileContent *file_content, char *line) {
 
     file_content->content[file_content->size] = strdup(line);
     if (file_content->content[file_content->size] == NULL) {
-        printf("Memory allocation error.\n");
+        error("Memory allocation error");
         exit(1);
     }
 
